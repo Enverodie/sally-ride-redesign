@@ -1,3 +1,86 @@
+:root {
+  --bodyBackgroundImage: url('images/starfield2.png');
+  --prideFlagImage: linear-gradient(180deg, #FE0000 16.66%,
+  #FD8C00 16.66%, 33.32%,
+  #FFE500 33.32%, 49.98%,
+  #119F0B 49.98%, 66.64%,
+  #0644B3 66.64%, 83.3%,
+  #C22EDC 83.3%);
+  --lesbianFlagImage: linear-gradient(180deg, #A60061 14.285%,
+  #B95393 14.285%, 28.57%, #D260A7 28.57%, 42.855%,
+  #EDEDEB 42.855%, 57.14%, #E5ABD0 57.14%, 71.425%,
+  #C74D52 71.425%, 85.71%, #8C1D00 85.71%);
+  --lgbred: #FE0000;
+  --lgborange: #FD8C00;
+  --lgbyellow: #FFE500;
+  --lgbgreen: #119F0B;
+  --lgbblue: #0644B3;
+  --lgbpurple: #C22EDC;
+
+  --pureblack: #000000;
+  --purewhite: #FFFFFF;
+  --defaultwhite: #EBEAF8;
+  --lightblue: #BDCFFF;
+  --lightbluetransparent: #bdcfff66;
+  --blue: #3354A8;
+  --bluepurpleImage: linear-gradient(180deg, rgba(42, 68, 137, 0.6) 0%, #1B051E 100%);
+
+  --h1Size: 64px;
+  --h2Size: 36px;
+  --h3Size: 22px;
+  --h4Size: 16px;
+  --h5Size: 15px;
+  --h6Size: 14px;
+  --pSize: 14px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --h1Size: 64px;
+    --h2Size: 27px;
+    --h3Size: 27px;
+    --h4Size: 20px;
+    --h5Size: 18px;
+    --h6Size: 16px;
+    --pSize: 16px;
+  }
+}
+
+@media (min-width: 1000px) {
+  :root {
+    --h1Size: 64px;
+    --h2Size: 40px;
+    --h3Size: 28px;
+    --h4Size: 22px;
+    --h5Size: 22px;
+    --h6Size: 20px;
+    --pSize: 16px;
+  }
+}
+
+/* Font stuff */
+* {
+  font-family: 'Jura', Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  font-size: var(--pSize);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Jockey One', Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.1em;
+}
+h1 { font-size: var(--h1Size); }
+h2 { font-size: var(--h2Size); }
+h3 { font-size: var(--h3Size); }
+h4 { font-size: var(--h4Size); }
+h5 { font-size: var(--h5Size); }
+h6 { font-size: var(--h6Size); }
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +88,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  
+  background-image: var(--bodyBackgroundImage);
+  background-position: center right;
+  background-size: cover;
 }
 
 code {
