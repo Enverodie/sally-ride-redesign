@@ -1,4 +1,87 @@
 .NavButton {
-    background-color: red;
-    
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--blue);
+    color: var(--lightblue);
+    text-decoration: none;
+    z-index: 1;
+    * { 
+        font-size: var(--h3Size);
+        font-family: 'Jockey One', Verdana, Geneva, Tahoma, sans-serif; 
+    }
+
+    &>.buttonStatus {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &>.label {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // padding: .35em;
+        text-align: center;
+        &>* {
+            margin: 0;
+        }
+        svg text {
+            fill: var(--lightblue);
+        }
+    }
+
+    // inactive and active state variants
+
+    &.active {
+        cursor: default;
+
+        &>.buttonStatus {
+            background-color: var(--lgborange);
+            width: 25%;
+            &::before {
+                content: '>';
+                display: block;
+                color: var(--lightblue);
+            }
+        }
+    }
+
+    &.inactive {
+        &>.buttonStatus {
+            background-color: var(--lgbgreen);
+            width: 2%;
+            transition: width .2s ease;
+        }
+    }
+
+    // actions
+
+    &.inactive:hover .buttonStatus {
+        width: 20%;
+        animation: rgbCycling 500ms ease-in-out forwards;
+    }
+}
+
+@keyframes rgbCycling {
+    0% {
+
+    }
+    80% {
+        filter: hue-rotate(360deg);
+        background-color: initial;
+    }
+    100% {
+        background-color: var(--defaultwhite);
+    }
+}
+
+@media (min-width: 850px) {
+    .NavButton {
+
+        * { 
+            font-size: var(--h2Size);
+        }
+    }
 }

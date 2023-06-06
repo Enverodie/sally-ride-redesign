@@ -1,10 +1,20 @@
+import { Link, useLocation } from 'react-router-dom';
+
 import './buttons.scss';
 
-function NavButton() {
-    return ( 
-        <a className="">
+function NavButton({href, children}) {
+    const {pathname} = useLocation();
 
-        </a>
+    return ( 
+        <Link className={"NavButton " + (href === pathname ? 'active' : 'inactive')} to={href}>
+            <div className="buttonStatus"></div>
+            <div className='label'>
+            {
+                // this is where the name of the button goes
+                children
+            }
+            </div>
+        </Link>
      );
 }
 
