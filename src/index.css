@@ -20,9 +20,11 @@
   --pureblack: #000000;
   --purewhite: #FFFFFF;
   --defaultwhite: #EBEAF8;
+  --placeholdergray: #BDBDBD;
   --lightblue: #BDCFFF;
   --lightbluetransparent: #bdcfff66;
   --blue: #3354A8;
+  --bluetransparent: #3354A8EE;
   --bluepurpleImage: linear-gradient(180deg, rgba(42, 68, 137, 0.6) 0%, #1B051E 100%);
 
   --h1Size: 64px;

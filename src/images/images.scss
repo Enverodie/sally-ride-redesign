@@ -1,0 +1,83 @@
+.ImagePlaceholder {
+
+    --defaultShadow: -2px 2px 0px black;
+    --borderRadius: 20px;
+
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    padding: .3em;
+    
+    .content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--borderRadius);
+        background-color: var(--placeholdergray);
+        overflow: hidden;
+        
+        img.backgroundImage {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    
+    &::before {
+        content: '';    
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        border-radius: var(--borderRadius);
+        background-image: var(--prideFlagImage);
+    }
+}
+
+.ImagePlaceholderSimple {
+    .content {
+        &.active {
+            div.info {
+                display: flex;
+            }
+            button.info {
+                background-color: var(--lgborange);
+            }
+        }
+
+        div.info {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--defaultwhite);
+            background-color: var(--bluetransparent);
+            overflow: auto;
+            box-sizing: border-box;
+            padding: 1.5ch;
+            text-align: center;
+        }
+        
+        button.info {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: .5em;
+            padding: .5em 1.4ch;
+            border: none;
+            background-color: var(--blue);
+            border-radius: var(--borderRadius);
+            color: var(--defaultwhite);
+            box-shadow: var(--defaultShadow);
+            cursor: pointer;
+        }
+    }
+}
