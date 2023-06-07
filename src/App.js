@@ -3,6 +3,7 @@ import './App.css';
 import { Helmet } from 'react-helmet';
 import ImagePlaceholderSimple from './images/ImagePlaceholderSimple';
 import imagePlaceholderTest from './images/index_images/sr1.jpg';
+import ImagePlaceholderComplex from './images/ImagePlaceholderComplex';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         
       */}
       <ImagePlaceholderSimple src={imagePlaceholderTest} alt="test"></ImagePlaceholderSimple>
+      <ImagePlaceholderComplex src={imagePlaceholderTest} alt="test" rotation="10deg">This is a text test.</ImagePlaceholderComplex>
       </div>
     </>
   );
