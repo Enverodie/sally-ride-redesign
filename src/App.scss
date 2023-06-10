@@ -1,0 +1,85 @@
+@use 'breakpoints';
+
+.App {
+    width: 100%;
+    height: 100%;
+}
+
+.mainBlock {
+    // temp sizing
+    width: 700px;
+    height: 700px;
+    --borderRadius: 30px;
+    --headerHeight: 15vh;
+
+    display: flex;
+    flex-direction: column;
+
+    &>header {
+        
+        height: var(--headerHeight);
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 var(--borderRadius);
+
+        svg {
+            flex: 1;
+        }
+
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &>.pageContent {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        flex-wrap: nowrap;
+        background-image: var(--bluepurpleImage);
+        border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+        height: calc(100% - var(--headerHeight));
+
+        main {
+            box-sizing: border-box;
+            margin-left: var(--borderRadius);
+            margin-top: var(--borderRadius);
+            margin-bottom: var(--borderRadius);
+            margin-right: var(--borderRadius);
+            padding-right: var(--borderRadius);
+            overflow: auto;
+        }
+        
+        aside {
+            box-sizing: border-box;
+            display: none;
+            position: relative;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+    }
+}
+
+@media (min-width: breakpoints.$minTablet) {
+    .mainBlock>.pageContent {
+        grid-template-columns: 4fr 1fr;
+
+        main {
+            margin-right: 0;
+        }
+
+        aside {
+            display: flex;
+        }
+    } 
+}
+
+@media (min-width: breakpoints.$minDesktop) {
+    .mainBlock>.pageContent aside>* {
+        left: 110%;
+    }
+}

@@ -1,9 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import { Helmet } from 'react-helmet';
-import ImagePlaceholderSimple from './images/ImagePlaceholderSimple';
-import imagePlaceholderTest from './images/index_images/sr1.jpg';
-import ImagePlaceholderComplex from './images/ImagePlaceholderComplex';
+import Index from './routecontent/Index'
+import SallyRideImg from './images/index_images/cover_image.png';
 
 function App() {
   return (
@@ -32,8 +31,28 @@ function App() {
         App controls the look of every single page, regardless of route.
         
       */}
-      <ImagePlaceholderSimple src={imagePlaceholderTest} alt="test"></ImagePlaceholderSimple>
-      <ImagePlaceholderComplex src={imagePlaceholderTest} alt="test" rotation="10deg">This is a text test.</ImagePlaceholderComplex>
+
+        <div className="mainBlock">
+          
+          <header>
+            <svg>
+              
+            </svg>
+            <img src={SallyRideImg} alt="" aria-hidden="true" />
+          </header>
+          <div className="pageContent">
+            <main>
+              <Index />
+            </main>
+            <aside>
+              
+            </aside>
+          </div>
+
+        </div>
+
+        <footer>This is where the nav will go</footer>
+
       </div>
     </>
   );
