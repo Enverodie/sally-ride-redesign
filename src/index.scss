@@ -1,3 +1,5 @@
+@use 'breakpoints';
+
 :root {
   --bodyBackgroundImage: url('images/starfield2.png');
   --prideFlagImage: linear-gradient(180deg, #FE0000 16.66%,
@@ -34,7 +36,7 @@
   --pSize: 14px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: breakpoints.$minTablet) {
   :root {
     --h1Size: 64px;
     --h2Size: 27px;
@@ -46,7 +48,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: breakpoints.$minDesktop) {
   :root {
     --h1Size: 64px;
     --h2Size: 40px;
@@ -63,6 +65,7 @@
   font-family: 'Jura', Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 600;
   font-size: var(--pSize);
+  color: var(--defaultwhite);
 }
 
 h1, h2, h3, h4, h5, h6 {

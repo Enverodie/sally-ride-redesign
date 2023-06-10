@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import { Helmet } from 'react-helmet';
+import Index from './routecontent/Index'
+import SallyRideImg from './images/index_images/cover_image.png';
 
 function App() {
   return (
@@ -29,6 +31,27 @@ function App() {
         App controls the look of every single page, regardless of route.
         
       */}
+
+        <div className="mainBlock">
+          
+          <header>
+            <svg>
+              
+            </svg>
+            <img src={SallyRideImg} alt="" aria-hidden="true" />
+          </header>
+          <div className="pageContent">
+            <main>
+              <Index />
+            </main>
+            <aside>
+              
+            </aside>
+          </div>
+
+        </div>
+
+        <footer>This is where the nav will go</footer>
 
       </div>
     </>
