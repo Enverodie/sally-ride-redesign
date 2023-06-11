@@ -3,6 +3,7 @@
     --defaultShadow: -2px 2px 0px black;
     --borderRadius: 20px;
 
+    pointer-events: all;
     display: block;
     box-sizing: border-box;
     position: relative;
@@ -84,38 +85,57 @@
 
 .ImagePlaceholderComplex {
     --borderWidth: 5px;
+    --filterOutlineGlow: 
+        drop-shadow(2px 2px 1px var(--blue))
+        drop-shadow(2px -2px 1px var(--blue))
+        drop-shadow(-2px 2px 1px var(--blue))
+        drop-shadow(-2px -2px 1px var(--blue));
 
-    // position: relative;
-    // width: fit-content;
+    position: relative;
+    width: 100%;
+    padding: 1em;
     // height: 100%;
     // left: 500px;
-    // padding: 1em;
     // box-sizing: border-box;
 
     .label {
 
+
         display: none;
 
+        justify-content: center;
+        align-items: center;
         position: absolute;
         top: 10%;
-        right: 100%;
+        bottom: 40%;
+        right: 135%;
         box-sizing: border-box;
         
         width: 100%;        
         
         .labeltext {
-            width: 100%;
-            height: 100%;
+            // width: 100%;
+            // height: 100%;
             box-sizing: border-box;
             border: var(--borderWidth) dashed var(--defaultwhite);
             border-radius: 50%;
-
+            filter: var(--filterOutlineGlow);
+            
             color: var(--defaultwhite);
-            padding: 25%;
+            padding: 40px;
             z-index: 1;
-
+            
+            
         }
-
+        
+        // &::before {
+        //     content: '';
+        //     position: absolute;
+        //     border: var(--borderWidth) dashed var(--defaultwhite);
+        //     border-radius: 40%;
+            
+        // }
+        
         img.labelbackground {
             --increasedSize: 10px;
             position: absolute;
@@ -140,13 +160,14 @@
     }
 
     &.hovered .label {
-        display: block;
+        display: flex;
     }
 
 }
 
 .ImagePlaceholderComplex.arrow {
     pointer-events: none;
+    filter: var(--filterOutlineGlow);
 
     .arrow__path {
         stroke: var(--defaultwhite);

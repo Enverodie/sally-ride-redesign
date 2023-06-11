@@ -1,8 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.scss';
 import { Helmet } from 'react-helmet';
+import Navbar from './nav/Navbar';
 import Index from './routecontent/Index'
+import ImagePlaceholderComplex from './images/ImagePlaceholderComplex';
+
 import SallyRideImg from './images/index_images/cover_image.png';
+import PlaceholderImg1 from './images/index_images/sr1.jpg';
+import PlaceholderImg2 from './images/index_images/sr2.jpg';
+import './App.scss';
 
 function App() {
   return (
@@ -32,26 +37,31 @@ function App() {
         
       */}
 
-        <div className="mainBlock">
-          
-          <header>
-            <svg>
-              
-            </svg>
-            <img src={SallyRideImg} alt="" aria-hidden="true" />
-          </header>
-          <div className="pageContent">
-            <main>
-              <Index />
-            </main>
-            <aside>
-              
-            </aside>
+        <div className='totalBlock'>
+
+          <div className="mainBlock">
+
+            <header>
+              <svg>
+                
+              </svg>
+              <img src={SallyRideImg} alt="" aria-hidden="true" />
+            </header>
+            <div className="pageContent">
+              <main>
+                <Index />
+              </main>
+              <aside>
+                <ImagePlaceholderComplex width="14vw" height="75%" rotation="-7deg" src={PlaceholderImg1} alt="">This is a very large description test to see the wrapping capability.</ImagePlaceholderComplex>
+                <ImagePlaceholderComplex width="14vw" height="100%" rotation="5deg" src={PlaceholderImg2} alt="">Description</ImagePlaceholderComplex>
+                {/* <ImagePlaceholderComplex src={PlaceholderImg1} alt="">Description</ImagePlaceholderComplex> */}
+              </aside>
+            </div>
           </div>
 
-        </div>
+          <Navbar />
 
-        <footer>This is where the nav will go</footer>
+        </div>
 
       </div>
     </>

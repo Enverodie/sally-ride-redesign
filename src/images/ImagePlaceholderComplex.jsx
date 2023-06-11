@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import Arrow, { DIRECTION } from 'react-arrows';
 import PaintImg from './smear_2.png';
 
+import './images.scss'
+
 function ImagePlaceholderComplex({src, alt, width, height, rotation, children}) {
 
+    const imageID = useId();
+    const labelID = useId();
     const [isHovered, setHovered] = useState(false);
     
     function onHoverOverImage(cursorOn) {
@@ -21,7 +25,7 @@ function ImagePlaceholderComplex({src, alt, width, height, rotation, children}) 
 
     let toLeft = {
         direction: DIRECTION.BOTTOM_LEFT,
-        node: () => document.getElementById('mainElementPointerBox'),
+        node: () => document.getElementById(imageID),
         translation: [-.3, .4],
     }
 
@@ -30,7 +34,7 @@ function ImagePlaceholderComplex({src, alt, width, height, rotation, children}) 
             className="ImagePlaceholderComplex arrow"
             from={{
                 direction: DIRECTION.BOTTOM,
-                node: () => document.getElementById('labelElement'),
+                node: () => document.getElementById(labelID),
                 translation: [.5, 1.3],
             }}
             to={toLeft}
@@ -46,23 +50,20 @@ function ImagePlaceholderComplex({src, alt, width, height, rotation, children}) 
             // for some reason we have to include the styles here instead of in the stylesheet
             // because there will be clipping with the arrow if done in the stylesheet
             style={{
-                width: "fit-content",
-                height: "100%",
-                position: "relative",
-                padding: "1em",
+                height: height,
                 boxSizing: "border-box",
             }}
         >
-            <div id="mainElement" className="ImagePlaceholder" style={{ width: width || "250px", height: height || "250px", transform: `rotate(${rotation || "0deg"})` }}>
+            <div className="ImagePlaceholder" style={{ width: width || "250px", height: "100%", transform: `rotate(${rotation || "0deg"})` }}>
                 <div className="content">
-                    <div id="mainElementPointerBox" class="mainElementPointerBox" style={{transform: `rotate( calc(${'-1 *' + rotation || '0deg'}) )`}}></div>
+                    <div id={imageID} className="mainElementPointerBox" style={{transform: `rotate( calc(${'-1 *' + rotation || '0deg'}) )`}}></div>
                     <img className="backgroundImage" src={src} alt={alt} />
                 </div>
             </div>
 
-            <div id="labelElement" className="label">
+            <div className="label">
                 <img className="labelbackground" src={PaintImg} alt="" aria-hidden="true" />
-                <div className="labeltext">
+                <div id={labelID} className="labeltext">
                     {children}
                 </div>
             </div>
