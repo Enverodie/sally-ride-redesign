@@ -33,7 +33,7 @@
   --borderRadiusMedium: 20px;
   --borderRadiusLarge: 25px;
 
-  --h1Size: 64px;
+  --h1Size: 36px;
   --h2Size: 36px;
   --h3Size: 22px;
   --h4Size: 16px;
@@ -44,7 +44,7 @@
 
 @media (min-width: breakpoints.$minTablet) {
   :root {
-    --h1Size: 64px;
+    --h1Size: 48px;
     --h2Size: 27px;
     --h3Size: 27px;
     --h4Size: 20px;
@@ -56,13 +56,19 @@
 
 @media (min-width: breakpoints.$minDesktop) {
   :root {
-    --h1Size: 64px;
+    --h1Size: 48px;
     --h2Size: 40px;
     --h3Size: 28px;
     --h4Size: 22px;
     --h5Size: 22px;
     --h6Size: 20px;
     --pSize: 16px;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --h1Size: 60px;
   }
 }
 

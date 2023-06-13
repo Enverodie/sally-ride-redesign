@@ -8,6 +8,7 @@ import SallyRideImg from './images/index_images/cover_image.png';
 import PlaceholderImg1 from './images/index_images/sr1.jpg';
 import PlaceholderImg2 from './images/index_images/sr2.jpg';
 import './App.scss';
+import Title from './Title';
 
 function App() {
   return (
@@ -42,9 +43,7 @@ function App() {
           <div className="mainBlock">
 
             <header>
-              <svg>
-                
-              </svg>
+              <Title>Sally Ride: An Innovator in STEM</Title>
               <img src={SallyRideImg} alt="" aria-hidden="true" />
             </header>
             <div className="pageContent">
