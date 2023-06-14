@@ -22,7 +22,7 @@
 // header, main content and image placeholders go in here
 .mainBlock {
     --borderRadius: var(--borderRadiusLarge);
-    --asideWidth: 30%;
+    --asideWidth: 35%;
     
     width: 100%;
     display: flex;
@@ -61,9 +61,9 @@
 
     &>.pageContent {
 
+        --verticalPaddingAside: 2vh;
+
         box-sizing: border-box;
-        display: grid;
-        grid-template-columns: 1fr;
         background-image: var(--bluepurpleImage);
         border-radius: var(--borderRadius) var(--borderRadius) 0 0;
         height: calc(100% - var(--headerHeight));
@@ -72,8 +72,10 @@
 
         main {
             width: 100%;
+            height: 100%;
             overflow: auto;
             padding-right: calc(var(--borderRadius) / 2);
+            box-sizing: border-box;
         }
         
         aside {
@@ -88,6 +90,7 @@
             flex-direction: column;
             justify-content: space-around;
             gap: 3em;
+            padding: var(--verticalPaddingAside) 0;
         }
 
     }
@@ -98,11 +101,21 @@
     .mainBlock {
 
         &>.pageContent {
-            grid-template-columns: calc(100% - var(--asideWidth)) var(--asideWidth);
+
+            --moveImagesLeftBy: 4%;
             
+            main {
+                padding-right: calc((var(--borderRadius) / 2) + var(--asideWidth));
+            }
+
             aside {
                 display: flex;
                 align-items: center;
+                padding: 
+                    var(--verticalPaddingAside) 
+                    calc(var(--borderRadius) + var(--moveImagesLeftBy)) 
+                    var(--verticalPaddingAside) 
+                    0;
             }
         } 
     }
@@ -127,6 +140,7 @@
             aside {
 
                 height: calc(100% + var(--headerHeight));
+                padding: 0;
 
                 .ImagePlaceholder {
                     width: 140% !important;
