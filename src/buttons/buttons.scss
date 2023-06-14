@@ -60,19 +60,12 @@
 
     &.inactive:hover .buttonStatus {
         width: 20%;
-        animation: rgbCycling 500ms ease-in-out forwards;
+        animation: turnWhite 125ms ease-in-out forwards;
     }
 }
 
-@keyframes rgbCycling {
-    0% {
-
-    }
-    80% {
-        filter: hue-rotate(360deg);
-        background-color: initial;
-    }
-    100% {
+@keyframes turnWhite {
+    to {
         background-color: var(--defaultwhite);
     }
 }
