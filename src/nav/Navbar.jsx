@@ -8,7 +8,7 @@ function Navbar() {
             <div className="navTitles">
 
                 <div className="mainHeader">
-                    <div><span>Sally Ride </span><span>Awareness Campaign</span></div>
+                    Sally Ride Awareness Campaign
                 </div>
 
                 <div className="auxHeader">#SallyRidePride</div>
