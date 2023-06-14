@@ -39,6 +39,10 @@
         border-radius: var(--borderRadius);
         background-image: var(--prideFlagImage);
     }
+
+    &.ImagePlaceholderAltBorder::before {
+        background-image: var(--lesbianFlagImage);
+    }
 }
 
 .ImagePlaceholderSimple {

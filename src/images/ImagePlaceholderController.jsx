@@ -4,7 +4,7 @@ import ImagePlaceholderSimple from "./ImagePlaceholderSimple";
 import PlaceholderImg1 from './index_images/sr1.jpg';
 import ShowAtBreakpoint from "../ShowAtBreakpoint";
 
-function ImagePlaceholderController({src, alt, width, height, rotation, children}) {
+function ImagePlaceholderController({src, alt, width, height, rotation, altBorder, children}) {
 
     // default values
     src = PlaceholderImg1;
@@ -17,10 +17,10 @@ function ImagePlaceholderController({src, alt, width, height, rotation, children
     return (
         <>
             <ShowAtBreakpoint min={"Tablet"} max={"Tablet"}>
-                <ImagePlaceholderSimple src={src} alt={alt} width={width} height={height} rotation={rotation}>{children}</ImagePlaceholderSimple>
+                <ImagePlaceholderSimple src={src} alt={alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{children}</ImagePlaceholderSimple>
             </ShowAtBreakpoint>
             <ShowAtBreakpoint min={"Desktop"} max={"Desktop"}>
-                <ImagePlaceholderComplex src={src} alt={alt} width={width} height={height} rotation={rotation}>{children}</ImagePlaceholderComplex>
+                <ImagePlaceholderComplex src={src} alt={alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{children}</ImagePlaceholderComplex>
             </ShowAtBreakpoint>
         </>
     );

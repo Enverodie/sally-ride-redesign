@@ -4,7 +4,7 @@ import PaintImg from './smear_2.png';
 
 import './images.scss'
 
-function ImagePlaceholderComplex({src, alt, width, height, rotation, children}) {
+function ImagePlaceholderComplex({src, alt, width, height, rotation, altBorder, children}) {
 
     const imageID = useId();
     const labelID = useId();
@@ -54,7 +54,10 @@ function ImagePlaceholderComplex({src, alt, width, height, rotation, children}) 
                 boxSizing: "border-box",
             }}
         >
-            <div className="ImagePlaceholder" style={{ width: width || "250px", height: "100%", transform: `rotate(${rotation || "0deg"})` }}>
+            <div 
+                className={"ImagePlaceholder" + (altBorder ? " ImagePlaceholderAltBorder" : "")} 
+                style={{ width: width || "250px", height: "100%", transform: `rotate(${rotation || "0deg"})` }}
+            >
                 <div className="content">
                     <div id={imageID} className="mainElementPointerBox" style={{transform: `rotate( calc(${'-1 *' + rotation || '0deg'}) )`}}></div>
                     <img className="backgroundImage" src={src} alt={alt} />

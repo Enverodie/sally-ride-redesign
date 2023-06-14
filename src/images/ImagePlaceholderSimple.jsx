@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './images.scss';
 
-function ImagePlaceholderSimple({src, alt, width, height, rotation, children}) {
+function ImagePlaceholderSimple({src, alt, width, height, rotation, altBorder, children}) {
 
     const [isActive, setActive] = useState(false);
 
@@ -12,7 +12,7 @@ function ImagePlaceholderSimple({src, alt, width, height, rotation, children}) {
 
     return ( 
         <div 
-            className="ImagePlaceholder ImagePlaceholderSimple" 
+            className={"ImagePlaceholder ImagePlaceholderSimple" + (altBorder? " ImagePlaceholderAltBorder" : "")} 
             style={{
                 width: width || "250px", 
                 height: height || "250px", 
