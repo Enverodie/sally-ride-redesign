@@ -8,6 +8,7 @@
     box-sizing: border-box;
     position: relative;
     padding: .3em;
+    filter: drop-shadow(var(--imageDropShadow));
     
     .content {
         position: relative;

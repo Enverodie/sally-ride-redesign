@@ -20,6 +20,7 @@
   --lgbpurple: #C22EDC;
 
   --pureblack: #000000;
+  --pureblacktransparent: #00000099;
   --purewhite: #FFFFFF;
   --defaultwhite: #EBEAF8;
   --placeholdergray: #BDBDBD;
@@ -43,6 +44,8 @@
 
   --headerHeight: 15.5vh;
   --borderWidthThick: 5px;
+
+  --imageDropShadow: -3px 4px 0px var(--pureblacktransparent);
 }
 
 @media (min-width: breakpoints.$minTablet) {

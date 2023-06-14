@@ -12,6 +12,7 @@ function MissionSealImage({height}) {
                 height: height || '100%',
                 objectFit: 'contain',
                 position: 'relative',
+                filter: `drop-shadow(var(--imageDropShadow))`,
             }} 
             /> 
     );
