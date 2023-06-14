@@ -103,7 +103,7 @@ nav {
         --borderRadiusPadding: 2ch;
         flex-direction: row;
         padding: 0 var(--borderRadiusPadding);
-        border-radius: 0 0 var(--paddingVertical) var(--paddingVertical);
+        border-radius: 0 0 var(--borderRadiusLarge) var(--borderRadiusLarge);
 
         .navTitles {
             width: var(--defaultWidth);
@@ -143,13 +143,15 @@ nav {
 // desktops
 @media (min-width: breakpoints.$minDesktop) {
     nav {
+        --paddingVertical: calc(var(--borderRadiusSmall) / 2);
+
         padding: 0 0 var(--paddingVertical);
-        border-radius: var(--paddingVertical) 0 0 var(--paddingVertical);
+        border-radius: var(--borderRadiusLarge) 0 0 var(--borderRadiusLarge);
         flex-direction: column;
         align-items: flex-start;
-        width: 20vw;
+        width: 15vw;
         height: 100%;
-        // gap: var(--paddingVertical);
+        overflow: hidden;
 
         .navTitles {
             width: 100%;
@@ -164,7 +166,7 @@ nav {
             }
 
             .auxHeader {
-                font-size: var(--h4Size);
+                font-size: var(--pSize);
             }
         }
 
@@ -180,6 +182,16 @@ nav {
                 flex: 1;
                 flex-direction: row;
             }
+        }
+    }
+}
+
+@media (min-width: 1120px) {
+    nav {
+        --paddingVertical: var(--borderRadiusSmall);
+
+        .navTitles .auxHeader {
+            font-size: var(--h5Size);
         }
     }
 }

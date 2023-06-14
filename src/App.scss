@@ -155,6 +155,8 @@
     }
 
     .totalBlock {
+        --mainContentWidth: 90vw;
+
         flex-direction: row;
 
         nav {
@@ -162,4 +164,10 @@
         }
     }
 
+}
+
+@media (min-width: 1500px) {
+    .totalBlock {
+        --mainContentWidth: 80.5vw;
+    }
 }
