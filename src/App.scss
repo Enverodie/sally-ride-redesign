@@ -22,7 +22,7 @@
 // header, main content and image placeholders go in here
 .mainBlock {
     --borderRadius: var(--borderRadiusLarge);
-    --asideWidth: 20%;
+    --asideWidth: 30%;
     
     width: 100%;
     display: flex;
@@ -81,7 +81,7 @@
             box-sizing: border-box;
             display: none;
             position: absolute;
-            top: 0;
+            bottom: 0;
             right: 0;
             width: var(--asideWidth);
             height: 100%;
@@ -98,10 +98,11 @@
     .mainBlock {
 
         &>.pageContent {
-            grid-template-columns: 4fr 1fr;
+            grid-template-columns: calc(100% - var(--asideWidth)) var(--asideWidth);
             
             aside {
                 display: flex;
+                align-items: center;
             }
         } 
     }
@@ -111,7 +112,7 @@
 @media (min-width: breakpoints.$minDesktop) {
     
     .mainBlock {
-
+        --asideWidth: 24%;
         width: 60%;
         overflow: initial;
         
@@ -123,9 +124,19 @@
                 padding-right: calc(var(--borderRadius) + var(--asideWidth));
             }
 
-            aside>* {
-                left: 110%;
+            aside {
+
+                height: calc(100% + var(--headerHeight));
+
+                .ImagePlaceholder {
+                    width: 140% !important;
+                }
+                
+                &>* {
+                    left: 106%;
+                }
             }
+
         }
     }
 

@@ -2,15 +2,18 @@ import { Routes, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Navbar from './nav/Navbar';
 import Index from './routecontent/Index'
-import ImagePlaceholderComplex from './images/ImagePlaceholderComplex';
+import ShowAtBreakpoint from './ShowAtBreakpoint';
+import ImagePlaceholderController from './images/ImagePlaceholderController';
+import Title from './Title';
+import MissionSealImage from './images/MissionSealImage';
 
 import SallyRideImg from './images/index_images/cover_image.png';
-import PlaceholderImg1 from './images/index_images/sr1.jpg';
-import PlaceholderImg2 from './images/index_images/sr2.jpg';
 import './App.scss';
-import Title from './Title';
 
 function App() {
+
+  
+
   return (
     <>
       <Helmet>
@@ -51,9 +54,11 @@ function App() {
                 <Index />
               </main>
               <aside>
-                <ImagePlaceholderComplex width="14vw" height="75%" rotation="-7deg" src={PlaceholderImg1} alt="">This is a very large description test to see the wrapping capability.</ImagePlaceholderComplex>
-                <ImagePlaceholderComplex width="14vw" height="100%" rotation="5deg" src={PlaceholderImg2} alt="">Description</ImagePlaceholderComplex>
-                {/* <ImagePlaceholderComplex src={PlaceholderImg1} alt="">Description</ImagePlaceholderComplex> */}
+                <ShowAtBreakpoint min="Desktop">
+                  <MissionSealImage height="50%" />
+                </ShowAtBreakpoint>
+                <ImagePlaceholderController height="75%" rotation="-7deg" />
+                <ImagePlaceholderController height="100%" rotation="5deg" />
               </aside>
             </div>
           </div>
