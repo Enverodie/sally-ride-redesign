@@ -11,22 +11,25 @@
 // .mainBlock and sidebar go in here
 .totalBlock {
 
-    --mainContentHeight: 85vh;
     --mainContentWidth: 95.5vw;
 
     display: flex;
     flex-direction: column;
-    height: var(--mainContentHeight);
+    height: 90%;
     width: var(--mainContentWidth);
 }
 
 // header, main content and image placeholders go in here
 .mainBlock {
-    width: 100%;
-    height: 100%;
     --borderRadius: var(--borderRadiusLarge);
     --headerHeight: 15vh;
-
+    --asideWidth: 20%;
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
     &>header {
         
         height: var(--headerHeight);
@@ -59,12 +62,9 @@
 
     &>.pageContent {
 
-        --asideWidth: 20%;
-
         box-sizing: border-box;
         display: grid;
         grid-template-columns: 1fr;
-        flex-wrap: nowrap;
         background-image: var(--bluepurpleImage);
         border-radius: var(--borderRadius) var(--borderRadius) 0 0;
         height: calc(100% - var(--headerHeight));
@@ -73,8 +73,8 @@
 
         main {
             width: 100%;
-            padding-right: calc(var(--borderRadius) + var(--asideWidth));
             overflow: auto;
+            padding-right: calc(var(--borderRadius) / 2);
         }
         
         aside {
@@ -101,11 +101,6 @@
         &>.pageContent {
             grid-template-columns: 4fr 1fr;
             
-            main {
-                // margin-right: 0;
-    
-            }
-            
             aside {
                 display: flex;
             }
@@ -119,10 +114,15 @@
     .mainBlock {
 
         width: 60%;
+        overflow: initial;
         
         &>.pageContent {
 
             border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+
+            main {
+                padding-right: calc(var(--borderRadius) + var(--asideWidth));
+            }
 
             aside>* {
                 left: 110%;
