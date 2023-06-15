@@ -12,7 +12,7 @@ import './App.scss';
 // all accessible routes
 import * as IndexData from './routecontent/Index';
 import * as OurTeamData from './routecontent/OurTeam';
-import * as TheProjectData from './routecontent/TheProject';
+import * as TheProjectData from './routecontent/OurCampaign';
 
 const ALL_ACCESSIBLE_ROUTES = [OurTeamData, IndexData, TheProjectData];
 
@@ -73,7 +73,7 @@ function App() {
           <Navbar />
     
         </div>
-        
+
       </div>
     </>
   );

@@ -5,7 +5,7 @@ import "./navbar.scss";
 // routes
 import * as IndexData from '../routecontent/Index';
 import * as OurTeamData from '../routecontent/OurTeam';
-import * as TheProjectData from '../routecontent/TheProject';
+import * as TheProjectData from '../routecontent/OurCampaign';
 
 const NAVBAR_ACCESSIBLE_ROUTES = [IndexData, OurTeamData, TheProjectData];
 
