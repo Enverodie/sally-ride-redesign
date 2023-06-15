@@ -1,7 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Navbar from './nav/Navbar';
-import Index from './routecontent/Index'
 import ShowAtBreakpoint from './ShowAtBreakpoint';
 import ImagePlaceholderController from './images/ImagePlaceholderController';
 import Title from './Title';
@@ -10,9 +9,21 @@ import MissionSealImage from './images/MissionSealImage';
 import SallyRideImg from './images/index_images/cover_image.png';
 import './App.scss';
 
+// all accessible routes
+import * as IndexData from './routecontent/Index';
+import * as OurTeamData from './routecontent/OurTeam';
+import * as TheProjectData from './routecontent/TheProject';
+
+const ALL_ACCESSIBLE_ROUTES = [OurTeamData, IndexData, TheProjectData];
+
+/**
+ * React component App controls the look of every page of the app,
+ * regardless of route. Handles all possible routes and establishes site's
+ * base layout.
+ */
 function App() {
 
-  
+  const location = useLocation();
 
   return (
     <>
@@ -24,34 +35,30 @@ function App() {
       </Helmet>
       <div className="App">
 
-        {/* <h1>This is a route test</h1>
-        <Routes>
-          <Route path="/" element={<div>root or home</div>} />
-          <Route path="nonHome" element={<b>not home</b>} />
-          <Route path="*" element={<i>not recognized</i>} />
-        </Routes>
-        <h2>Now I'll be inserting a second routes component</h2>
-        <Routes>
-          <Route path="/" element={<div>still at home</div>} />
-          <Route path="nonHome" element={<div>Heyo</div>} />
-        </Routes> */}
-        {/* 
-        
-        App controls the look of every single page, regardless of route.
-        
-      */}
-
         <div className='totalBlock'>
 
           <div className="mainBlock">
-
+      
             <header>
-              <Title>Sally Ride: An Innovator in STEM</Title>
+              <Title>
+                { ALL_ACCESSIBLE_ROUTES.find(item => item.ROUTE === location.pathname)?.TITLE || "Sally Ride Awareness Campaign website"}
+              </Title>
               <img src={SallyRideImg} alt="" aria-hidden="true" />
             </header>
             <div className="pageContent">
               <main>
-                <Index />
+                <Routes>
+                  {
+                    ALL_ACCESSIBLE_ROUTES.map((r, i) => {
+                      console.log(location.pathname, r.ROUTE);
+                      return (
+                        <Route key={i} exact path={r.ROUTE} element={<r.default />} />
+                      )
+                    })
+                  }
+                  <Route path="*" element={<h1 style={{color: 'var(--errorred)'}}>Location {location.pathname} not found.</h1>} />
+      
+                </Routes>
               </main>
               <aside>
                 <ShowAtBreakpoint min="Desktop">
@@ -62,11 +69,11 @@ function App() {
               </aside>
             </div>
           </div>
-
+      
           <Navbar />
-
+    
         </div>
-
+        
       </div>
     </>
   );
