@@ -1,3 +1,5 @@
+import ImageDetails from "../images/ImageDetails";
+
 export const ROUTE = '/';
 export const TITLE_SHORT = "Home";
 export const TITLE = "Sally Ride: An Innovator in STEM";
