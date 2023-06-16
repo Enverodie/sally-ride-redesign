@@ -50,7 +50,6 @@ function App() {
                 <Routes>
                   {
                     ALL_ACCESSIBLE_ROUTES.map((r, i) => {
-                      console.log(location.pathname, r.ROUTE);
                       return (
                         <Route key={i} exact path={r.ROUTE} element={<r.default />} />
                       )
