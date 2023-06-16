@@ -15,20 +15,21 @@ import Img5 from './index_images/sr5.jpg';
  * @param {*} alt The alt description for the image
  * @returns Object representing the image
  */
-function ImageDetail(src, alt) {
-    return new function() {
+export function ImageDetail(src, alt, details) {
+    return new (function() {
         this.src = src;
         this.alt = alt;
-    }
+        this.details = details;
+    })();
 }
 
 // Image ID corresponds to the index in the array
 const ImageDetails = [
-    ImageDetail(Img1, ""),
-    ImageDetail(Img2, ""),
-    ImageDetail(Img3, ""),
-    ImageDetail(Img4, ""),
-    ImageDetail(Img5, ""),
+    ImageDetail(Img1, "", ""),
+    ImageDetail(Img2, "", ""),
+    ImageDetail(Img3, "", ""),
+    ImageDetail(Img4, "", ""),
+    ImageDetail(Img5, "", ""),
 ]
 
 export default ImageDetails;
