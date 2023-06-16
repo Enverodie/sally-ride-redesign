@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, withRouter } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Navbar from './nav/Navbar';
 import ShowAtBreakpoint from './ShowAtBreakpoint';
