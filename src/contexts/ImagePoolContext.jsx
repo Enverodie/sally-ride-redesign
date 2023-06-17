@@ -4,7 +4,7 @@ export const ImagePoolDefaultObject = (function() {
     
     const imagePool = {};
 
-    let imagePoolActive = false;
+    let imagePoolActive = true;
 
     function addToImagePool(poolNumber, imageID) {
         // we use an object here to ensure image IDs are unique

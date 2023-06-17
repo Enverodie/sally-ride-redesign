@@ -26,6 +26,39 @@
             height: 100%;
             object-fit: cover;
         }
+
+        div.buttons {
+
+            --margin: .5rem;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            button {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: var(--margin);
+                padding: var(--margin) 1.4ch;
+                border: none;
+                background-color: var(--blue);
+                border-radius: var(--borderRadius);
+                color: var(--defaultwhite);
+                box-shadow: var(--defaultShadow);
+                cursor: pointer;
+            }
+
+            .ImagePlaceholderProgressionButtons {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
     }
     
     &::before {
@@ -51,8 +84,16 @@
             div.info {
                 display: flex;
             }
-            button.info {
-                background-color: var(--lgborange);
+
+            div.buttons button {
+
+                background-color: var(--defaultwhite);
+                display: none;
+    
+                &.info {
+                    display: inherit;
+                    background-color: var(--lgborange);
+                }
             }
         }
 
@@ -72,19 +113,6 @@
             text-align: center;
         }
         
-        button.info {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: .5em;
-            padding: .5em 1.4ch;
-            border: none;
-            background-color: var(--blue);
-            border-radius: var(--borderRadius);
-            color: var(--defaultwhite);
-            box-shadow: var(--defaultShadow);
-            cursor: pointer;
-        }
     }
 }
 
@@ -99,9 +127,6 @@
     position: relative;
     width: 100%;
     padding: 1em;
-    // height: 100%;
-    // left: 500px;
-    // box-sizing: border-box;
 
     .label {
 
@@ -119,8 +144,6 @@
         width: 100%;        
         
         .labeltext {
-            // width: 100%;
-            // height: 100%;
             box-sizing: border-box;
             border: var(--borderWidth) dashed var(--defaultwhite);
             border-radius: 50%;
@@ -132,14 +155,6 @@
             
             
         }
-        
-        // &::before {
-        //     content: '';
-        //     position: absolute;
-        //     border: var(--borderWidth) dashed var(--defaultwhite);
-        //     border-radius: 40%;
-            
-        // }
         
         img.labelbackground {
             --increasedSize: 10px;
@@ -189,4 +204,68 @@
 .imageSeedContainer {
     display: flex;
     justify-content: center;
+
+    .ImagePlaceholderProgressionButtons {
+        display: none !important;
+    }
+}
+
+@media (pointer: fine) {
+   
+    .ImagePlaceholder .content {
+
+        div.buttons .ImagePlaceholderProgressionButtons {
+            
+            --displayOnShow: flex;
+            justify-content: center;
+            display: none;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            gap: 3px;
+            
+            button {
+                position: relative;
+                flex: 1;
+                border: none;
+                border-radius: 0 !important;
+                margin: 0 !important;
+                background-color: var(--pureblacktransparent) !important;
+                
+                &:hover {
+                    color: var(--lgborange);
+                }
+
+                &>* {
+                    font-size: var(--h2Size);
+                    color: transparent;
+                    background-color: var(--lgborange);
+                    background-clip: text;
+                    -moz-background-clip: text;
+                    -webkit-background-clip: text;
+                    filter: drop-shadow(var(--imageDropShadow));
+                    // background-image: linear-gradient(60deg, var(--lgbred), var(--lgborange), var(--lgbyellow), var(--lgbgreen), var(--lgbblue), var(--lgbpurple), var(--defaultwhite));
+                    background-image: linear-gradient(60deg, var(--lgbred), var(--lgborange), var(--lgbyellow), var(--lgbgreen), var(--lgbblue), var(--defaultwhite));
+                    background-size: 400%;
+                    background-position-x: 100%;
+                    transition: background-position-x 350ms ease-in-out;
+                }
+
+                &:hover>* {
+                    background-position-x: 0%;
+                    transform: scale(1.3);
+                }
+                
+                &:active>* {
+                    transform: scale(1.15);
+                }
+            }
+            
+        }
+
+        &:hover div.buttons .ImagePlaceholderProgressionButtons {
+            display: var(--displayOnShow);
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import Arrow, { DIRECTION } from 'react-arrows';
+import ImagePlaceholderProgressionButtons from "./ImagePlaceholderProgressionButtons";
 import PaintImg from './smear_2.png';
 
 import './images.scss'
@@ -61,6 +62,9 @@ function ImagePlaceholderComplex({src, alt, width, height, rotation, altBorder, 
                 <div className="content">
                     <div id={imageID} className="mainElementPointerBox" style={{transform: `rotate( calc(${'-1 *' + rotation || '0deg'}) )`}}></div>
                     <img className="backgroundImage" src={src} alt={alt} />
+                    <div className="buttons">
+                        <ImagePlaceholderProgressionButtons />
+                    </div>
                 </div>
             </div>
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import './images.scss';
+import ImagePlaceholderProgressionButtons from './ImagePlaceholderProgressionButtons';
 
 function ImagePlaceholderSimple({src, alt, width, height, rotation, altBorder, children}) {
 
@@ -25,7 +26,10 @@ function ImagePlaceholderSimple({src, alt, width, height, rotation, altBorder, c
                         {children}
                     </div>
                 </div>
-                <button className='info' onClick={toggleState}>i</button>
+                <div className='buttons'>
+                    <ImagePlaceholderProgressionButtons />
+                    <button className='info' onClick={toggleState}>i</button>
+                </div>
             </div>
         </div>
      );
