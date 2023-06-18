@@ -1,14 +1,78 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import ImagePlaceholderComplex from "./ImagePlaceholderComplex";
 import ImagePlaceholderSimple from "./ImagePlaceholderSimple";
 import PlaceholderImg1 from './index_images/sr1.jpg';
+// TODO: get a placeholder image
 import ShowAtBreakpoint from "../ShowAtBreakpoint";
+import { ImagePoolContext } from "../contexts/ImagePoolContext";
+import { ImagePlaceholderContext } from "../contexts/ImagePlaceholderContext";
+import ImageDetails, { ImageDetail } from "./ImageDetails";
 
-function ImagePlaceholderController({src, alt, width, height, rotation, altBorder, children}) {
+function ImagePlaceholderController({ width, height, rotation, altBorder, poolNumber }) {
+    
+    poolNumber = (typeof poolNumber !== 'undefined') ? poolNumber : 0;
+
+    const imagePool = useContext(ImagePoolContext);
+
+    // const [ opacityBefore, setOpacityBefore ] = useState(0);
+    // const [ opacity, setOpacity ] = useState(1);
+    // const [ opacityAfter, setOpacityAfter ] = useState(0);
+    const [ poolIndex, setPoolIndex ] = useState(0);
+    
+    const placeholderSrc = PlaceholderImg1;
+    const placeholderAlt = "image not found";
+    const placeholderDescription = placeholderAlt;
+
+    function getNewPoolIndex(increment) {
+        let images = imagePool.getImagesInPool(poolNumber);
+        // keep value in range
+        console.log("getNewPoolIndex("+increment+") from getNewPoolIndex");
+        let newvalue = (poolIndex + increment) % images.length;
+        if (newvalue < 0) newvalue = images.length - 1;
+        console.log("poolIndex", poolIndex, "offset", increment, "index", newvalue);
+        return newvalue;
+    }
+
+    function smartAddPoolIndex(increment) {
+        // console.log(imagePool.getImagesInPool(poolNumber), poolIndex, increment)
+        console.log(`getNewPoolIndex(${increment}) from smartAddPoolIndex`);
+        setPoolIndex(getNewPoolIndex(increment));
+    }
+    
+    function getImage(offset) {
+        let index = getNewPoolIndex(poolIndex + offset);
+        let imageIDs = imagePool.getImagesInPool(poolNumber);
+        if (imageIDs === -1) {
+            console.error(`Found no pool corresponding to imagePool #${poolNumber}`);
+            return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
+        } 
+        let imageID = imageIDs[index];
+        console.log("poolIndex", poolIndex, "offset", offset, "index", index, "imageIDs", imageIDs, "imageID", imageID);
+        return ImageDetails[imageID];
+    }
+
+    return (
+        <ImagePlaceholderContext.Provider value={{ poolIndex, smartAddPoolIndex }}>
+            <div className="ImagePlaceholderController">
+                
+                {/* <div>
+                    <ImageDisplay src={getImage(-1).src} alt={getImage(-1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(-1).details}</ImageDisplay>
+                </div> */}
+                <div style={{zIndex: '1'}}>
+                    <ImageDisplay src={getImage(0).src} alt={getImage(0).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(0).details}</ImageDisplay>
+                </div>
+                {/* <div>
+                    <ImageDisplay src={getImage(1).src} alt={getImage(1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(1).details}</ImageDisplay>
+                </div> */}
+                
+            </div>
+        </ImagePlaceholderContext.Provider>
+    );
+}
+
+function ImageDisplay({ src, alt, width, height, rotation, altBorder, children }) {
 
     // default values
-    src = PlaceholderImg1;
-    alt = alt || "";
     width = width || "85%";
     height = height || "75%";
     rotation = rotation || "-7deg";
@@ -23,7 +87,7 @@ function ImagePlaceholderController({src, alt, width, height, rotation, altBorde
                 <ImagePlaceholderComplex src={src} alt={alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{children}</ImagePlaceholderComplex>
             </ShowAtBreakpoint>
         </>
-    );
+    )
 }
 
 export default ImagePlaceholderController;

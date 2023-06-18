@@ -68,8 +68,8 @@ function App() {
                 <ShowAtBreakpoint min="Desktop">
                   <MissionSealImage height="50%" />
                 </ShowAtBreakpoint>
-                <ImagePlaceholderController height="75%" rotation="-7deg" />
-                <ImagePlaceholderController altBorder={true} height="100%" rotation="5deg" />
+                <ImagePlaceholderController poolNumber={0} height="75%" rotation="-7deg" />
+                <ImagePlaceholderController poolNumber={0} altBorder={true} height="100%" rotation="5deg" />
               </aside>
             </div>
 

@@ -10,7 +10,6 @@ export const ImagePoolDefaultObject = (function() {
         // we use an object here to ensure image IDs are unique
         if (imagePool[poolNumber] === undefined) imagePool[poolNumber] = {};
         imagePool[poolNumber][imageID] = true;
-        console.log(imagePool);
     } 
 
     function removeFromImagePool(poolNumber, imageID) {
