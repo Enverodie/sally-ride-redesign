@@ -69,7 +69,7 @@ function App() {
                   <MissionSealImage height="50%" />
                 </ShowAtBreakpoint>
                 <ImagePlaceholderController poolNumber={0} height="75%" rotation="-7deg" />
-                <ImagePlaceholderController poolNumber={0} altBorder={true} height="100%" rotation="5deg" />
+                <ImagePlaceholderController poolNumber={1} altBorder={true} height="100%" rotation="5deg" />
               </aside>
             </div>
 

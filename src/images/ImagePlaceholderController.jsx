@@ -13,6 +13,7 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
     poolNumber = (typeof poolNumber !== 'undefined') ? poolNumber : 0;
 
     const imagePool = useContext(ImagePoolContext);
+    const imagesInPool = imagePool.getImagesInPool(poolNumber);
 
     // const [ opacityBefore, setOpacityBefore ] = useState(0);
     // const [ opacity, setOpacity ] = useState(1);
@@ -24,30 +25,30 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
     const placeholderDescription = placeholderAlt;
 
     function getNewPoolIndex(increment) {
-        let images = imagePool.getImagesInPool(poolNumber);
         // keep value in range
-        console.log("getNewPoolIndex("+increment+") from getNewPoolIndex");
-        let newvalue = (poolIndex + increment) % images.length;
-        if (newvalue < 0) newvalue = images.length - 1;
-        console.log("poolIndex", poolIndex, "offset", increment, "index", newvalue);
+        // console.log("getNewPoolIndex("+increment+") from getNewPoolIndex");
+        let newvalue = (poolIndex + increment) % imagesInPool.length;
+        if (newvalue < 0) newvalue = imagesInPool.length - 1;
+        // console.log("poolIndex", poolIndex, "offset", increment, "index", newvalue);
         return newvalue;
     }
 
     function smartAddPoolIndex(increment) {
         // console.log(imagePool.getImagesInPool(poolNumber), poolIndex, increment)
         console.log(`getNewPoolIndex(${increment}) from smartAddPoolIndex`);
-        setPoolIndex(getNewPoolIndex(increment));
+        let newindex = getNewPoolIndex(increment);
+        setPoolIndex(newindex);
+        console.log("I just called to update poolIndex to ", newindex);
     }
     
     function getImage(offset) {
-        let index = getNewPoolIndex(poolIndex + offset);
-        let imageIDs = imagePool.getImagesInPool(poolNumber);
-        if (imageIDs === -1) {
+        let index = getNewPoolIndex(offset);
+        if (imagesInPool === -1) {
             console.error(`Found no pool corresponding to imagePool #${poolNumber}`);
             return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
         } 
-        let imageID = imageIDs[index];
-        console.log("poolIndex", poolIndex, "offset", offset, "index", index, "imageIDs", imageIDs, "imageID", imageID);
+        let imageID = imagesInPool[index];
+        console.log("poolIndex", poolIndex, "offset", offset, "index", index, "imageIDs", imagesInPool, "imageID", imageID);
         return ImageDetails[imageID];
     }
 
