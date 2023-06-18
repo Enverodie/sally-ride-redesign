@@ -26,19 +26,13 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
 
     function getNewPoolIndex(increment) {
         // keep value in range
-        // console.log("getNewPoolIndex("+increment+") from getNewPoolIndex");
         let newvalue = (poolIndex + increment) % imagesInPool.length;
         if (newvalue < 0) newvalue = imagesInPool.length - 1;
-        // console.log("poolIndex", poolIndex, "offset", increment, "index", newvalue);
         return newvalue;
     }
 
     function smartAddPoolIndex(increment) {
-        // console.log(imagePool.getImagesInPool(poolNumber), poolIndex, increment)
-        console.log(`getNewPoolIndex(${increment}) from smartAddPoolIndex`);
-        let newindex = getNewPoolIndex(increment);
-        setPoolIndex(newindex);
-        console.log("I just called to update poolIndex to ", newindex);
+        setPoolIndex(getNewPoolIndex(increment));
     }
     
     function getImage(offset) {
@@ -48,7 +42,6 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
             return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
         } 
         let imageID = imagesInPool[index];
-        console.log("poolIndex", poolIndex, "offset", offset, "index", index, "imageIDs", imagesInPool, "imageID", imageID);
         return ImageDetails[imageID];
     }
 
@@ -56,15 +49,15 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
         <ImagePlaceholderContext.Provider value={{ poolIndex, smartAddPoolIndex }}>
             <div className="ImagePlaceholderController">
                 
-                {/* <div>
+                <div>
                     <ImageDisplay src={getImage(-1).src} alt={getImage(-1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(-1).details}</ImageDisplay>
-                </div> */}
+                </div>
                 <div style={{zIndex: '1'}}>
                     <ImageDisplay src={getImage(0).src} alt={getImage(0).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(0).details}</ImageDisplay>
                 </div>
-                {/* <div>
+                <div>
                     <ImageDisplay src={getImage(1).src} alt={getImage(1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(1).details}</ImageDisplay>
-                </div> */}
+                </div>
                 
             </div>
         </ImagePlaceholderContext.Provider>
