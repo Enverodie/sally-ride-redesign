@@ -8,14 +8,6 @@ import { ImagePoolContext } from "../contexts/ImagePoolContext";
 import { ImagePlaceholderContext } from "../contexts/ImagePlaceholderContext";
 import ImageDetails, { ImageDetail } from "./ImageDetails";
 
-const initialPlaceholderState = {
-    poolIndex: 0,
-
-    // related variables
-    indexOffset: 0,
-    isAnimating: false,
-}
-
 function ImagePlaceholderController({ width, height, rotation, altBorder, poolNumber }) {
     
     poolNumber = (typeof poolNumber !== 'undefined') ? poolNumber : 0;
@@ -27,50 +19,44 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
         switch (action.type) {
             case 'change-offset':
                 let newOffset = loopWithinArray(action.payload, state.poolIndex, imagesInPool);
-                // let newOffset = getNewPoolIndex(state.indexOffset + action.payload);
                 return { ...state, indexOffset: newOffset, isAnimating: true };
             case 'finished-animating':
-                console.log("animation ended");
+                console.log("finished animating")
                 return { ...state, isAnimating: false, poolIndex: state.indexOffset, indexOffset: 0 };
             default:
                 throw new SyntaxError("ImagePlaceholderController reducer action type not recognized.");
         }
     }
 
-    const [ state, dispatch ] = useReducer(reducer, initialPlaceholderState);
-    
-    // immediately after this variable is updated, 
-    // set the class of the bottom image to visible and the first to fading
+    const [ state, dispatch ] = useReducer(reducer, new (function() {
+        this.poolIndex = 0;
+
+        // related variables
+        this.indexOffset = 0;
+        this.isAnimating = false;
+
+        this.offsetImageDetails = function () {
+            console.log("offsetImageDetails", this.indexOffset, imagesInPool)
+            if (imagesInPool === -1) {
+                console.error(`Found no pool corresponding to imagePool #${poolNumber}`);
+                return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
+            } 
+            return ImageDetails[imagesInPool[this.indexOffset]];
+        } 
+    })());
     
     const placeholderSrc = PlaceholderImg1;
     const placeholderAlt = "image not found";
     const placeholderDescription = placeholderAlt;
-    
-    function getImage(offset) {
-        let index = loopWithinArray(offset, state.poolIndex, imagesInPool);
-        if (imagesInPool === -1) {
-            console.error(`Found no pool corresponding to imagePool #${poolNumber}`);
-            return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
-        } 
-        let imageID = imagesInPool[index];
+
+    function getImage() {
+        let imageID = imagesInPool[state.poolIndex];
         return ImageDetails[imageID];
     }
 
     return (
-        <ImagePlaceholderContext.Provider value={{ dispatch }}>
-            <div className="ImagePlaceholderController">
-                
-                {/* <div>
-                    <ImageDisplay src={getImage(-1).src} alt={getImage(-1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(-1).details}</ImageDisplay>
-                </div> */}
-                <div className={"visible" + (state.isAnimating? ' fading' : '')} onTransitionEnd={() => dispatch({type: 'finished-animating'})} style={{zIndex: '1'}}>
-                    <ImageDisplay src={getImage(0).src} alt={getImage(0).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(0).details}</ImageDisplay>
-                </div>
-                <div className={(state.isAnimating? 'visible' : '')}>
-                    <ImageDisplay src={getImage(state.indexOffset).src} alt={getImage(state.indexOffset).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(state.indexOffset).details}</ImageDisplay>
-                </div>
-                
-            </div>
+        <ImagePlaceholderContext.Provider value={{ state, dispatch }}>
+            <ImageDisplay src={getImage().src} alt={getImage().alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage().details}</ImageDisplay>
         </ImagePlaceholderContext.Provider>
     );
 }

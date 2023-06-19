@@ -2,6 +2,7 @@
 
     --defaultShadow: -2px 2px 0px black;
     --borderRadius: 20px;
+    --imageAppearSpeed: .5s;
 
     pointer-events: all;
     display: block;
@@ -25,6 +26,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            &.next {
+                opacity: 0;
+                &.appearing {
+                    opacity: 1;
+                }
+            }
         }
 
         div.buttons {
@@ -56,6 +63,24 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+            }
+        }
+
+        .next, .current {
+            transition: opacity var(--imageAppearSpeed) linear;
+
+            .next {
+                opacity: 0;
+                &.appearing {
+                    opacity: 1 !important;
+                }
+            }
+
+            .current {
+                opacity: 1;
+                &.appearing {
+                    opacity: 0 !important;
+                }
             }
         }
 
