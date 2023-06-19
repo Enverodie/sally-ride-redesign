@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useReducer, useContext } from "react";
 import ImagePlaceholderComplex from "./ImagePlaceholderComplex";
 import ImagePlaceholderSimple from "./ImagePlaceholderSimple";
 import PlaceholderImg1 from './index_images/sr1.jpg';
@@ -8,6 +8,14 @@ import { ImagePoolContext } from "../contexts/ImagePoolContext";
 import { ImagePlaceholderContext } from "../contexts/ImagePlaceholderContext";
 import ImageDetails, { ImageDetail } from "./ImageDetails";
 
+const initialPlaceholderState = {
+    poolIndex: 0,
+
+    // related variables
+    indexOffset: 0,
+    isAnimating: false,
+}
+
 function ImagePlaceholderController({ width, height, rotation, altBorder, poolNumber }) {
     
     poolNumber = (typeof poolNumber !== 'undefined') ? poolNumber : 0;
@@ -15,10 +23,26 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
     const imagePool = useContext(ImagePoolContext);
     const imagesInPool = imagePool.getImagesInPool(poolNumber);
 
-    // const [ opacityBefore, setOpacityBefore ] = useState(0);
-    // const [ opacity, setOpacity ] = useState(1);
-    // const [ opacityAfter, setOpacityAfter ] = useState(0);
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case 'change-offset':
+                let newOffset = loopWithinArray(action.payload, state.poolIndex, imagesInPool);
+                // let newOffset = getNewPoolIndex(state.indexOffset + action.payload);
+                return { ...state, indexOffset: newOffset, isAnimating: true };
+            case 'finished-animating':
+                return { ...state, isAnimating: false, poolIndex: state.indexOffset, indexOffset: 0 };
+            default:
+                throw new SyntaxError("ImagePlaceholderController reducer action type not recognized.");
+        }
+    }
+
+    const [ state, dispatch ] = useReducer(initialPlaceholderState, reducer);
+
     const [ poolIndex, setPoolIndex ] = useState(0);
+    
+    // immediately after this variable is updated, 
+    // set the class of the bottom image to visible and the first to fading
+    const [ indexOffset, setIndexOffset ] = useState(0); 
     
     const placeholderSrc = PlaceholderImg1;
     const placeholderAlt = "image not found";
@@ -34,6 +58,11 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
     function smartAddPoolIndex(increment) {
         setPoolIndex(getNewPoolIndex(increment));
     }
+
+    function smartSetPoolOffset(offsetFromIndex) {
+        let newIndexOffset = getNewPoolIndex(offsetFromIndex);
+        setIndexOffset(newIndexOffset);
+    }
     
     function getImage(offset) {
         let index = getNewPoolIndex(offset);
@@ -45,18 +74,22 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
         return ImageDetails[imageID];
     }
 
+    function updateImages() {
+        return;
+    }
+
     return (
         <ImagePlaceholderContext.Provider value={{ poolIndex, smartAddPoolIndex }}>
             <div className="ImagePlaceholderController">
                 
-                <div>
+                {/* <div>
                     <ImageDisplay src={getImage(-1).src} alt={getImage(-1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(-1).details}</ImageDisplay>
-                </div>
-                <div style={{zIndex: '1'}}>
+                </div> */}
+                <div className="visible" onAnimationEnd={updateImages} style={{zIndex: '1'}}>
                     <ImageDisplay src={getImage(0).src} alt={getImage(0).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(0).details}</ImageDisplay>
                 </div>
                 <div>
-                    <ImageDisplay src={getImage(1).src} alt={getImage(1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(1).details}</ImageDisplay>
+                    <ImageDisplay src={getImage(indexOffset).src} alt={getImage(indexOffset).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(indexOffset).details}</ImageDisplay>
                 </div>
                 
             </div>
@@ -82,6 +115,13 @@ function ImageDisplay({ src, alt, width, height, rotation, altBorder, children }
             </ShowAtBreakpoint>
         </>
     )
+}
+
+function loopWithinArray(newNumber, startingPoint, array) {
+    // keep value in range
+    let newvalue = (startingPoint + newNumber) % array.length;
+    if (newvalue < 0) newvalue = array.length - 1;
+    return newvalue;
 }
 
 export default ImagePlaceholderController;
