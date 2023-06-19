@@ -19,10 +19,7 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
         switch (action.type) {
             case 'change-offset':
                 let newOffset = loopWithinArray(action.payload, state.poolIndex, imagesInPool);
-                return { ...state, indexOffset: newOffset, isAnimating: true };
-            case 'finished-animating':
-                console.log("finished animating")
-                return { ...state, isAnimating: false, poolIndex: state.indexOffset, indexOffset: 0 };
+                return { ...state, poolIndex: newOffset };
             default:
                 throw new SyntaxError("ImagePlaceholderController reducer action type not recognized.");
         }
@@ -31,17 +28,12 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
     const [ state, dispatch ] = useReducer(reducer, new (function() {
         this.poolIndex = 0;
 
-        // related variables
-        this.indexOffset = 0;
-        this.isAnimating = false;
-
         this.offsetImageDetails = function () {
-            console.log("offsetImageDetails", this.indexOffset, imagesInPool)
             if (imagesInPool === -1) {
                 console.error(`Found no pool corresponding to imagePool #${poolNumber}`);
                 return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
             } 
-            return ImageDetails[imagesInPool[this.indexOffset]];
+            return ImageDetails[imagesInPool[this.imageOffset]];
         } 
     })());
     
@@ -50,12 +42,13 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
     const placeholderDescription = placeholderAlt;
 
     function getImage() {
+        console.log(state.poolIndex);
         let imageID = imagesInPool[state.poolIndex];
         return ImageDetails[imageID];
     }
 
     return (
-        <ImagePlaceholderContext.Provider value={{ state, dispatch }}>
+        <ImagePlaceholderContext.Provider value={{ dispatch }}>
             <ImageDisplay src={getImage().src} alt={getImage().alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage().details}</ImageDisplay>
         </ImagePlaceholderContext.Provider>
     );

@@ -1,5 +1,4 @@
-import { useState, useContext } from 'react';
-import { ImagePlaceholderContext } from '../contexts/ImagePlaceholderContext';
+import { useState } from 'react';
 
 import './images.scss';
 import ImagePlaceholderProgressionButtons from './ImagePlaceholderProgressionButtons';
@@ -7,11 +6,6 @@ import ImagePlaceholderProgressionButtons from './ImagePlaceholderProgressionBut
 function ImagePlaceholderSimple({src, alt, width, height, rotation, altBorder, children}) {
 
     const [isActive, setActive] = useState(false);
-
-    const imagePlaceholderContext = useContext(ImagePlaceholderContext);
-    const nextImageDetails = imagePlaceholderContext? imagePlaceholderContext.state.offsetImageDetails() : null;
-
-    console.log(imagePlaceholderContext, imagePlaceholderContext.state, nextImageDetails);
 
     function toggleState() {
         setActive(!isActive);
@@ -27,29 +21,9 @@ function ImagePlaceholderSimple({src, alt, width, height, rotation, altBorder, c
             }}>
             <div className={'content' + (isActive? ' active' : '')}>
                 <img className='backgroundImage' src={src} alt={alt} />
-                { 
-                    nextImageDetails && 
-                    <img 
-                        className={'backgroundImage next' + (imagePlaceholderContext.state.isAnimating? ' appearing' : '')} 
-                        onTransitionEnd={() => imagePlaceholderContext.dispatch({type: 'finished-animating'})}
-                        src={nextImageDetails.src} 
-                        alt={nextImageDetails.alt} />
-                }
                 <div className='info'>
-                    <div style={{position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <div 
-                            className={nextImageDetails? ('current' + (imagePlaceholderContext.state.isAnimating? ' appearing' : '')) : ''} 
-                            style={{position: 'absolute'}}>
-                            {children}
-                        </div>
-                        {
-                            nextImageDetails &&
-                            <div 
-                                className={'next' + (imagePlaceholderContext.state.isAnimating? ' appearing' : '')} 
-                                style={{position: 'absolute'}}>
-                                {nextImageDetails.details}
-                            </div>
-                        }
+                    <div>
+                        {children}
                     </div>
                 </div>
                 <div className='buttons'>
