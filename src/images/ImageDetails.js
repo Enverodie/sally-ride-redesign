@@ -25,11 +25,11 @@ export function ImageDetail(src, alt, details) {
 
 // Image ID corresponds to the index in the array
 const ImageDetails = [
-    ImageDetail(Img1, "", ""),
-    ImageDetail(Img2, "", ""),
-    ImageDetail(Img3, "", ""),
-    ImageDetail(Img4, "", ""),
-    ImageDetail(Img5, "", ""),
+    ImageDetail(Img1, "Sally Ride in spacecraft", "Sally Ride during the STS-7 mission in 1983"),
+    ImageDetail(Img2, "A rocket with attached space shuttle", "The Challenger mission"),
+    ImageDetail(Img3, "Sally posing with crew in front of space shuttle image", "Sally & crew"),
+    ImageDetail(Img4, "Sally behind a podium smiling", "Sally at a science festival"),
+    ImageDetail(Img5, "Tam speaking into a microphone in front of a projector showing Sally smiling", "Tam O'Shaughnessy"),
 ]
 
 export default ImageDetails;
