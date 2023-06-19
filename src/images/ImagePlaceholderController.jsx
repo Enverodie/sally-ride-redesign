@@ -1,4 +1,4 @@
-import { useState, useReducer, useContext } from "react";
+import { useReducer, useContext } from "react";
 import ImagePlaceholderComplex from "./ImagePlaceholderComplex";
 import ImagePlaceholderSimple from "./ImagePlaceholderSimple";
 import PlaceholderImg1 from './index_images/sr1.jpg';
@@ -30,42 +30,24 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
                 // let newOffset = getNewPoolIndex(state.indexOffset + action.payload);
                 return { ...state, indexOffset: newOffset, isAnimating: true };
             case 'finished-animating':
+                console.log("animation ended");
                 return { ...state, isAnimating: false, poolIndex: state.indexOffset, indexOffset: 0 };
             default:
                 throw new SyntaxError("ImagePlaceholderController reducer action type not recognized.");
         }
     }
 
-    const [ state, dispatch ] = useReducer(initialPlaceholderState, reducer);
-
-    const [ poolIndex, setPoolIndex ] = useState(0);
+    const [ state, dispatch ] = useReducer(reducer, initialPlaceholderState);
     
     // immediately after this variable is updated, 
     // set the class of the bottom image to visible and the first to fading
-    const [ indexOffset, setIndexOffset ] = useState(0); 
     
     const placeholderSrc = PlaceholderImg1;
     const placeholderAlt = "image not found";
     const placeholderDescription = placeholderAlt;
-
-    function getNewPoolIndex(increment) {
-        // keep value in range
-        let newvalue = (poolIndex + increment) % imagesInPool.length;
-        if (newvalue < 0) newvalue = imagesInPool.length - 1;
-        return newvalue;
-    }
-
-    function smartAddPoolIndex(increment) {
-        setPoolIndex(getNewPoolIndex(increment));
-    }
-
-    function smartSetPoolOffset(offsetFromIndex) {
-        let newIndexOffset = getNewPoolIndex(offsetFromIndex);
-        setIndexOffset(newIndexOffset);
-    }
     
     function getImage(offset) {
-        let index = getNewPoolIndex(offset);
+        let index = loopWithinArray(offset, state.poolIndex, imagesInPool);
         if (imagesInPool === -1) {
             console.error(`Found no pool corresponding to imagePool #${poolNumber}`);
             return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
@@ -74,22 +56,18 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
         return ImageDetails[imageID];
     }
 
-    function updateImages() {
-        return;
-    }
-
     return (
-        <ImagePlaceholderContext.Provider value={{ poolIndex, smartAddPoolIndex }}>
+        <ImagePlaceholderContext.Provider value={{ dispatch }}>
             <div className="ImagePlaceholderController">
                 
                 {/* <div>
                     <ImageDisplay src={getImage(-1).src} alt={getImage(-1).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(-1).details}</ImageDisplay>
                 </div> */}
-                <div className="visible" onAnimationEnd={updateImages} style={{zIndex: '1'}}>
+                <div className={"visible" + (state.isAnimating? ' fading' : '')} onTransitionEnd={() => dispatch({type: 'finished-animating'})} style={{zIndex: '1'}}>
                     <ImageDisplay src={getImage(0).src} alt={getImage(0).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(0).details}</ImageDisplay>
                 </div>
-                <div>
-                    <ImageDisplay src={getImage(indexOffset).src} alt={getImage(indexOffset).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(indexOffset).details}</ImageDisplay>
+                <div className={(state.isAnimating? 'visible' : '')}>
+                    <ImageDisplay src={getImage(state.indexOffset).src} alt={getImage(state.indexOffset).alt} width={width} height={height} rotation={rotation} altBorder={altBorder}>{getImage(state.indexOffset).details}</ImageDisplay>
                 </div>
                 
             </div>

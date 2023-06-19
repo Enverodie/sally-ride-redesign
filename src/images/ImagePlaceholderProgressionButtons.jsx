@@ -3,18 +3,18 @@ import { ImagePlaceholderContext } from "../contexts/ImagePlaceholderContext";
 
 function ImagePlaceholderProgressionButtons({onClickForward, onClickBackward}) {
 
-    const { poolIndex, smartAddPoolIndex } = useContext(ImagePlaceholderContext);
+    const { dispatch } = useContext(ImagePlaceholderContext);
 
     function onClickForwardFull() {
-        if (typeof poolIndex === 'number' && typeof smartAddPoolIndex === 'function') {
-            smartAddPoolIndex(1);
+        if (typeof dispatch === 'function') {
+            dispatch({type: 'change-offset', payload: 1});
         } 
         if (typeof onClickForward === 'function') onClickForward()
     }
     
     function onClickBackwardFull() {
-        if (typeof poolIndex === 'number' && typeof smartAddPoolIndex === 'function') {
-            smartAddPoolIndex(-1);
+        if (typeof dispatch === 'function') {
+            dispatch({ type: 'change-offset', payload: -1 });
         } 
         if (typeof onClickBackward === 'function') onClickBackward()
     }
