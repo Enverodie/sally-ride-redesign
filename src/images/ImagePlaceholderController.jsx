@@ -42,7 +42,10 @@ function ImagePlaceholderController({ width, height, rotation, altBorder, poolNu
     const placeholderDescription = placeholderAlt;
 
     function getImage() {
-        console.log(state.poolIndex);
+        if (imagesInPool === -1) {
+            console.error(`Found no pool corresponding to imagePool #${poolNumber}`);
+            return ImageDetail(placeholderSrc, placeholderAlt, placeholderDescription);
+        } 
         let imageID = imagesInPool[state.poolIndex];
         return ImageDetails[imageID];
     }

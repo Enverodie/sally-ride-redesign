@@ -17,6 +17,19 @@ export const ImagePoolDefaultObject = (function() {
         Reflect.deleteProperty(imagePool[poolNumber], imageID);
     }
 
+    function addAllDefaults() {
+        addToImagePool(0, 0);
+        addToImagePool(1, 1);
+        addToImagePool(0, 2);
+        addToImagePool(1, 3);
+        addToImagePool(0, 4);
+    }
+
+    function clearImagePool(poolNumber) {
+        if (imagePool[poolNumber] === undefined) return;
+        Reflect.deleteProperty(imagePool, poolNumber);
+    }
+
     /**
      * 
      * @param {Number} poolNumber 
@@ -31,6 +44,8 @@ export const ImagePoolDefaultObject = (function() {
         imagePoolActive,
         addToImagePool,
         removeFromImagePool,
+        addAllDefaults,
+        clearImagePool,
         getImagesInPool
     }
 })();

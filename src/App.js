@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Navbar from './nav/Navbar';
@@ -26,8 +27,6 @@ const ALL_ACCESSIBLE_ROUTES = [OurTeamData, IndexData, TheProjectData];
  */
 function App() {
 
-  const location = useLocation();
-
   return (
     <>
       <Helmet>
@@ -43,35 +42,8 @@ function App() {
           <div className="mainBlock">
 
             <ImagePoolContext.Provider value={ImagePoolDefaultObject}>
-      
-            <header>
-              <Title>
-                { ALL_ACCESSIBLE_ROUTES.find(item => item.ROUTE === location.pathname)?.TITLE || "Sally Ride Awareness Campaign website"}
-              </Title>
-              <img src={SallyRideImg} alt="" aria-hidden="true" />
-            </header>
-            <div className="pageContent">
-              <main>
-                <Routes>
-                  {
-                    ALL_ACCESSIBLE_ROUTES.map((r, i) => {
-                      return (
-                        <Route key={i} exact path={r.ROUTE} element={<r.default />} />
-                      )
-                    })
-                  }
-                  <Route path="*" element={<h1 style={{color: 'var(--errorred)'}}>Location {location.pathname} not found.</h1>} />
-      
-                </Routes>
-              </main>
-              <aside>
-                <ShowAtBreakpoint min="Desktop">
-                  <MissionSealImage height="50%" />
-                </ShowAtBreakpoint>
-                <ImagePlaceholderController poolNumber={0} height="75%" rotation="-7deg" />
-                <ImagePlaceholderController poolNumber={1} altBorder={true} height="100%" rotation="5deg" />
-              </aside>
-            </div>
+
+              <MainBlockContents />
 
             </ImagePoolContext.Provider>
 
@@ -84,6 +56,49 @@ function App() {
       </div>
     </>
   );
+}
+
+function MainBlockContents() {
+
+  const imagePoolContext = useContext(ImagePoolContext);
+  imagePoolContext.addAllDefaults();
+
+  const location = useLocation();
+
+  return (
+    <>
+
+      <header>
+        <Title>
+          {ALL_ACCESSIBLE_ROUTES.find(item => item.ROUTE === location.pathname)?.TITLE || "Sally Ride Awareness Campaign website"}
+        </Title>
+        <img src={SallyRideImg} alt="" aria-hidden="true" />
+      </header>
+      <div className="pageContent">
+        <main>
+          <Routes>
+            {
+              ALL_ACCESSIBLE_ROUTES.map((r, i) => {
+                return (
+                  <Route key={i} exact path={r.ROUTE} element={<r.default />} />
+                )
+              })
+            }
+            <Route path="*" element={<h1 style={{ color: 'var(--errorred)' }}>Location {location.pathname} not found.</h1>} />
+
+          </Routes>
+        </main>
+        <aside>
+          <ShowAtBreakpoint min="Desktop">
+            <MissionSealImage height="50%" />
+          </ShowAtBreakpoint>
+          <ImagePlaceholderController poolNumber={0} height="75%" rotation="-7deg" />
+          <ImagePlaceholderController poolNumber={1} altBorder={true} height="100%" rotation="5deg" />
+        </aside>
+      </div>
+
+    </>
+  )
 }
 
 export default App;

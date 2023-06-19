@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { ImagePoolContext } from "../contexts/ImagePoolContext";
 import ImageSeed from "../images/ImageSeed";
 
 export const ROUTE = '/';
@@ -5,6 +7,11 @@ export const TITLE_SHORT = "Home";
 export const TITLE = "Sally Ride: An Innovator in STEM";
 
 function Index() {
+
+    const imagePoolContext = useContext(ImagePoolContext);
+    imagePoolContext.clearImagePool(0);
+    imagePoolContext.clearImagePool(1);
+
     return ( 
         <>
 <h2>The First American Woman in Space</h2>
