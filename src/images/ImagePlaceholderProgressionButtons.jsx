@@ -3,7 +3,8 @@ import { ImagePlaceholderContext } from "../contexts/ImagePlaceholderContext";
 
 function ImagePlaceholderProgressionButtons({onClickForward, onClickBackward}) {
 
-    const { dispatch } = useContext(ImagePlaceholderContext);
+    const imagePlaceholderContext = useContext(ImagePlaceholderContext);
+    const dispatch = (imagePlaceholderContext? imagePlaceholderContext.dispatch : null);
 
     function onClickForwardFull() {
         if (typeof dispatch === 'function') {
