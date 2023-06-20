@@ -16,6 +16,8 @@
 
 .TeamMemberCard {
     --borderStyle: 4px solid var(--lgbblue);
+    --defaultHeight: 13rem;
+    height: var(--defaultHeight);
     margin: .5rem 7px;
     gap: 3ch;
     padding: 1rem 2ch;
@@ -48,6 +50,8 @@
         flex-direction: column;
         gap: .25em;
         flex: 2;
+        overflow: auto;
+        max-height: 100%;
         * { font-size: var(--cardSize); }
 
         .name {
@@ -77,4 +81,13 @@
         }
     }
 
+}
+
+// designed to prevent scroll behavior on normal display zooms
+@media 
+    ((min-width: breakpoints.$minDesktop) and (max-width: 1300px)) or 
+    ((min-width: breakpoints.$minTablet) and (max-width: 750px)) {
+    .TeamMemberCard {
+        height: calc(var(--defaultHeight) + 6em);
+    }
 }
