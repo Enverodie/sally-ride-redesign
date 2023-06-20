@@ -19,7 +19,7 @@ function OurTeam() {
 </div>
 
 <h3>Original project:</h3>
-<div className="genericCardHolder" style={{opacity: .72}}>
+<div className="genericCardHolder" style={{opacity: .85}}>
     <TeamMemberCard leader={true} name="Stephen Smith" about="I am a lifelong Hoosier, born in Bloomington, living in Spencer. I am a transfer student at Indiana University Bloomington majoring in Computer Science." contact="sms10@iu.edu" image={StephenImage} />
     <TeamMemberCard leader={false} name="Cade Hurley" about="I'm originally from South Bend, Indiana. I am a first year student attending Indiana University as an Informatics major." image={'https://sms10.pages.iu.edu/i101/project/team_images/cade.jpg'} />
     <TeamMemberCard leader={false} name="Tate Ensmenger" about="I'm from Bloomington. I'm a Junior-year transfer student new to IU after two years at Earlham College. I'm pursuing a B.S. in Informatics." image={'https://sms10.pages.iu.edu/i101/project/team_images/tate.jpg'} />
