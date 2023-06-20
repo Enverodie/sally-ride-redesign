@@ -1,5 +1,6 @@
 import TeamMemberCard from "../cards/TeamMemberCard";
 import StephenImage from "../images/team_images/stephen.jpg";
+import StephenNewImage from "../images/team_images/stephen-new.jpg";
 import '../cards/cardHolders.scss';
 
 export const ROUTE = '/OurTeam';
@@ -14,7 +15,7 @@ function OurTeam() {
 <p>We are team 093 in I101 section 5555. We are designing a social media campaign to raise awareness around Sally Ride and her inspirational story of overcoming discrimination and adversity to become the first American woman in space.</p>
 <h3>Website redesign:</h3>
 <div className="genericCardHolder">
-    <TeamMemberCard leader={true} name="Stephen Smith" about="I am from Bloomington, Indiana. I obtained my B.S. in Computer Science from the IU Luddy School of Informatics, Computing & Engineering with a minor in Web Design and Development." contact="enverodie@gmail.com" image={StephenImage} />
+    <TeamMemberCard leader={true} name="Stephen Smith" about="I am from Bloomington, Indiana. I obtained my B.S. in Computer Science from the IU Luddy School of Informatics, Computing & Engineering with a minor in Web Design and Development." contact="enverodie@gmail.com" image={StephenNewImage} />
 </div>
 
 <h3>Original project:</h3>
