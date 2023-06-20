@@ -94,9 +94,10 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Jockey One', Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.1em;
+  margin: .85em 0 .15em;
 }
 h1 { font-size: var(--h1Size); }
-h2 { font-size: var(--h2Size); }
+h2 { font-size: var(--h2Size); margin-top: 0; }
 h3 { font-size: var(--h3Size); }
 h4 { font-size: var(--h4Size); }
 h5 { font-size: var(--h5Size); }

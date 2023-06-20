@@ -1,3 +1,5 @@
+@use '../breakpoints';
+
 .card {
     display: flex;
     background-color: var(--lightbluelighttransparent);
@@ -5,51 +7,37 @@
     color: var(--pureblack);
     * { color: var(--pureblack); }
     
-    --cardSize: calc(var(--pSize) - 3px);
+    --resizePx: 2px;
+    --cardTitleSize: calc(var(--h4Size) - var(--resizePx));
+    --cardSize: calc(var(--pSize) - var(--resizePx));
     font-size: var(--cardSize);
     box-shadow: var(--dropShadowDirection) 4px var(--lgbblue); //#0006;
 }
 
 .TeamMemberCard {
     --borderStyle: 4px solid var(--lgbblue);
-    margin: 0 7px;
-    gap: 1.5em;
-    width: 32ch;
-    padding: 1.5rem 3.75ch;
+    margin: .5rem 7px;
+    gap: 3ch;
+    padding: 1rem 2ch;
     box-sizing: border-box;
-    flex-direction: column;
+    align-items: center;
     text-align: justify;
     text-align-last: center;
 
-    /*
-    .leader {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: left;
-        color: var(--lgbyellow);
-
-        &::before {
-            content: '⋆';
-            position: absolute;
-            right: 100%;
-        }
-    }
-    */
-
     .imageContainer {
         position: relative;
-        width: 100%;
+        // width: 100%;
+        height: 100%;
+        flex: 1;
         
         img {
             width: 100%;
-            border-radius: 50%;
+            height: 100%;
+            // border-radius: 50%;
+            border-radius: var(--borderRadiusSmall);
             border: var(--borderStyle);
             box-sizing: border-box;
+            object-fit: cover;
         }
         
     }
@@ -59,16 +47,21 @@
         display: flex;
         flex-direction: column;
         gap: .25em;
+        flex: 2;
+        * { font-size: var(--cardSize); }
 
         .name {
             position: relative;
-            font-size: var(--h4Size);
+            font-size: var(--cardTitleSize);
+            text-align: center;
         }
     
         .about {
+            text-align-last: justify;
+
             &::before {
                 content: "About: ";
-                font-weight: bold;
+                font-weight: 900;
                 color: var(--lgbblue);
             }
         }
@@ -78,7 +71,7 @@
             text-align-last: left;
             &::before {
                 content: "Contact: ";
-                font-weight: bold;
+                font-weight: 900;
                 color: var(--lgbblue);
             }
         }

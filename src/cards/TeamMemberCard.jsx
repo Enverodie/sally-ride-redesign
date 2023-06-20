@@ -14,8 +14,8 @@ function TeamMemberCard({leader, name, about, contact, image}) {
                     }
                     {name}
                 </div>
-                <div className='about'>{about}</div>
-                <div className='contact'>{contact}</div>
+                { about && <div className='about'>{about}</div> }
+                { contact && <div className='contact'>{contact}</div> }
             </div>
         </div>
      );
