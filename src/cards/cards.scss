@@ -1,0 +1,87 @@
+.card {
+    display: flex;
+    background-color: var(--lightbluelighttransparent);
+    border-radius: var(--borderRadiusSmall);
+    color: var(--pureblack);
+    * { color: var(--pureblack); }
+    
+    --cardSize: calc(var(--pSize) - 3px);
+    font-size: var(--cardSize);
+    box-shadow: var(--dropShadowDirection) 4px var(--lgbblue); //#0006;
+}
+
+.TeamMemberCard {
+    --borderStyle: 4px solid var(--lgbblue);
+    margin: 0 7px;
+    gap: 1.5em;
+    width: 32ch;
+    padding: 1.5rem 3.75ch;
+    box-sizing: border-box;
+    flex-direction: column;
+    text-align: justify;
+    text-align-last: center;
+
+    /*
+    .leader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        color: var(--lgbyellow);
+
+        &::before {
+            content: '⋆';
+            position: absolute;
+            right: 100%;
+        }
+    }
+    */
+
+    .imageContainer {
+        position: relative;
+        width: 100%;
+        
+        img {
+            width: 100%;
+            border-radius: 50%;
+            border: var(--borderStyle);
+            box-sizing: border-box;
+        }
+        
+    }
+
+    .textContainer {
+
+        display: flex;
+        flex-direction: column;
+        gap: .25em;
+
+        .name {
+            position: relative;
+            font-size: var(--h4Size);
+        }
+    
+        .about {
+            &::before {
+                content: "About: ";
+                font-weight: bold;
+                color: var(--lgbblue);
+            }
+        }
+
+        .contact {
+            font-style: italic;
+            text-align-last: left;
+            &::before {
+                content: "Contact: ";
+                font-weight: bold;
+                color: var(--lgbblue);
+            }
+        }
+    }
+
+}

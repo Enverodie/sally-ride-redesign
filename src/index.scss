@@ -25,6 +25,7 @@
   --defaultwhite: #EBEAF8;
   --placeholdergray: #BDBDBD;
   --lightblue: #BDCFFF;
+  --lightbluelighttransparent: #bdcfffcb;
   --lightbluetransparent: #bdcfff66;
   --blue: #3354A8;
   --bluetransparent: #3354A8EE;
@@ -46,7 +47,10 @@
   --headerHeight: 15.5vh;
   --borderWidthThick: 5px;
 
-  --imageDropShadow: -3px 4px 0px var(--pureblacktransparent);
+  --dropShadowDirectionX: -3px;
+  --dropShadowDirectionY: 4px;
+  --dropShadowDirection: var(--dropShadowDirectionX) var(--dropShadowDirectionY);
+  --imageDropShadow: var(--dropShadowDirection) 0px var(--pureblacktransparent);
 }
 
 @media (min-width: breakpoints.$minTablet) {
