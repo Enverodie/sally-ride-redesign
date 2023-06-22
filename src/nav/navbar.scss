@@ -1,6 +1,6 @@
 @use '../breakpoints';
 
-nav {
+nav.mainNav {
     --defaultWidth: 20vw;
     --paddingVertical: var(--borderRadiusSmall);
     --smallerSpacing: .25em;
@@ -96,9 +96,138 @@ nav {
     }
 }
 
+nav.campaignNav {
+    --rotation: 70deg;
+    --baseLength: 0px;
+    --multiplyLength: 2rem;
+    --lineWidth: 3px;
+    --navLineHeight: calc(var(--lineWidth) * 20);
+
+    --verticalHeight: calc(
+        var(--navLineHeight) +
+        (
+            (var(--baseLength) + (var(--multiplyLength)*3)) 
+            * 
+            cos(
+                var(--rotation) - 90deg
+            )
+        )
+    );
+
+    height: var(--verticalHeight);
+
+    .mainBar {
+
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        
+        &>* {
+            --isOdd: 1;
+            &:nth-child(even) { --isOdd: 0; }
+            --mod3: 1;
+            &:nth-child(3n + 2) { --mod3: 3; }
+            &:nth-child(3n + 3) { --mod3: 2; }
+            &:nth-child(3n + 1) { --mod3: 1; }
+            
+            flex: 1;
+            display: flex;
+            align-items: center;
+            height: var(--navLineHeight);
+            z-index: var(--itemsLeft);
+        }
+    
+        a {
+            text-decoration: none;
+        }
+        
+        .campaignLink {
+            --lineColor: var(--blue);
+            --lineStyle: var(--lineWidth) dashed;
+            --textColor: var(--defaultwhite);
+            border-bottom: var(--lineStyle) var(--lineColor);
+            height: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            color: var(--textColor);
+            font-size: calc(var(--navLineHeight) * .5);
+            z-index: 1;
+    
+            &.cap {
+                display: flex;
+                align-items: center;
+                border: none;
+    
+                img {
+                    position: relative;
+                    height: var(--navLineHeight);
+                    width: var(--navLineHeight);
+                    object-fit: contain;
+                }
+    
+                .buffer {
+                    flex: 1;
+                    border-bottom: var(--lineStyle) var(--lineColor);
+                }
+    
+            }
+    
+            &.active {
+                --textColor: var(--lgborange);
+    
+                .campaignLine { --lineColor: var(--lgborange); }
+            }
+    
+            .campaignLine {
+                --isEven: calc(1 - var(--isOdd));
+    
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                height: 100%;
+                border-bottom: var(--lineStyle) var(--lineColor);
+                transform-origin: bottom left;
+                transform: rotate(var(--rotation));
+                z-index: -1;
+                line-height: 0;
+    
+                // line length
+                width: calc(var(--baseLength) + (var(--multiplyLength) * var(--mod3)));
+    
+                .campaignLabelHolder {
+                    position: absolute;
+                    bottom: calc(-1 * var(--lineWidth));
+                    right: 0;
+                    width: 0;
+                    transform-origin: bottom left;
+                    transform: rotate(calc(-1 * var(--rotation)));
+                    line-height: initial;
+                    
+                    .campaignLabel {
+                        width: fit-content;
+                        border-bottom: var(--lineStyle) var(--lineColor);
+                        padding: .2em .6em;
+                        inline-size: max-content;
+                        font-size: calc(var(--pSize) - 4px);
+                        color: var(--textColor);
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
 // tablets and ipads and old pc monitors
 @media (min-width: breakpoints.$minTablet) {
-    nav {
+    nav.mainNav {
         --paddingVertical: var(--borderRadiusLarge);
         --borderRadiusPadding: 2ch;
         flex-direction: row;
@@ -142,7 +271,7 @@ nav {
 
 // desktops
 @media (min-width: breakpoints.$minDesktop) {
-    nav {
+    nav.mainNav {
         --paddingVertical: calc(var(--borderRadiusSmall) / 2);
 
         padding: 0 0 var(--paddingVertical);
@@ -187,7 +316,7 @@ nav {
 }
 
 @media (min-width: 1120px) {
-    nav {
+    nav.mainNav {
         --paddingVertical: var(--borderRadiusSmall);
 
         .navTitles .auxHeader {

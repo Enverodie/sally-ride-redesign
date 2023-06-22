@@ -6,6 +6,7 @@ import ShowAtBreakpoint from './ShowAtBreakpoint';
 import ImagePlaceholderController from './images/ImagePlaceholderController';
 import Title from './Title';
 import MissionSealImage from './images/MissionSealImage';
+import RouteNotFound from './RouteNotFound';
 
 import SallyRideImg from './images/index_images/cover_image.png';
 import './App.scss';
@@ -18,7 +19,8 @@ import * as TheProjectData from './routecontent/OurCampaign';
 // all contexts
 import { ImagePoolContext, ImagePoolDefaultObject } from './contexts/ImagePoolContext';
 
-const ALL_ACCESSIBLE_ROUTES = [OurTeamData, IndexData, TheProjectData];
+const ACCESSIBLE_ROUTES = [OurTeamData, IndexData, TheProjectData];
+const ALLOWED_SUBROUTES = [TheProjectData];
 
 /**
  * React component App controls the look of every page of the app,
@@ -70,7 +72,7 @@ function MainBlockContents() {
 
       <header>
         <Title>
-          {ALL_ACCESSIBLE_ROUTES.find(item => item.ROUTE === location.pathname)?.TITLE || "Sally Ride Awareness Campaign website"}
+          {ACCESSIBLE_ROUTES.find(item => item.ROUTE.split('/')[1] === location.pathname.split('/')[1])?.TITLE || "Sally Ride Awareness Campaign website"}
         </Title>
         <img src={SallyRideImg} alt="" aria-hidden="true" />
       </header>
@@ -78,13 +80,15 @@ function MainBlockContents() {
         <main>
           <Routes>
             {
-              ALL_ACCESSIBLE_ROUTES.map((r, i) => {
+              ACCESSIBLE_ROUTES.map((r, i) => {
+                let allowedRoute = r.ROUTE;
+                if (ALLOWED_SUBROUTES.find(subroute => subroute.ROUTE === r.ROUTE)) allowedRoute += '/*';
                 return (
-                  <Route key={i} exact path={r.ROUTE} element={<r.default />} />
+                  <Route key={i} exact path={allowedRoute} element={<r.default />} />
                 )
               })
             }
-            <Route path="*" element={<h1 style={{ color: 'var(--errorred)' }}>Location {location.pathname} not found.</h1>} />
+            <Route path="*" element={<RouteNotFound />} />
 
           </Routes>
         </main>

@@ -5,8 +5,10 @@ import './buttons.scss';
 function NavButton({href, children}) {
     const {pathname} = useLocation();
 
+    let activityClass = (href.split('/')[1] === pathname.split('/')[1])? 'active' : 'inactive';
+
     return ( 
-        <Link className={"NavButton " + (href === pathname ? 'active' : 'inactive')} to={href}>
+        <Link className={"NavButton " + activityClass} to={href} draggable="false">
             <div className="buttonStatus"></div>
             <div className='label'>
             {

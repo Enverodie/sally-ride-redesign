@@ -17,7 +17,7 @@ const NAVBAR_ACCESSIBLE_ROUTES = [IndexData, OurTeamData, TheProjectData];
  */
 function Navbar() {
     return ( 
-        <nav>
+        <nav className="mainNav">
             <div className="navTitles">
 
                 <div className="mainHeader">
