@@ -64,6 +64,35 @@
     }
 }
 
+.GenericButton {
+    --shadowBlur: 8px;
+
+    background-image: var(--prideFlagImage);
+    padding: .25em .25em;
+    border-radius: var(--borderRadiusSmall);
+    width: clamp(12ch, 22ch, 22ch);
+    border: none;
+    // filter: drop-shadow(var(--dropShadowDirection) var(--shadowBlur) var(--bluetransparent));
+    filter: drop-shadow(0px 0px var(--shadowBlur) var(--bluetransparent));
+    margin: 
+        calc(var(--shadowBlur) + max(var(--dropShadowDirectionY), -1 * var(--dropShadowDirectionY))) 
+        calc(var(--shadowBlur) + max(var(--dropShadowDirectionX), -1 * var(--dropShadowDirectionX)));
+    cursor: pointer;
+    
+    .content {
+        border-radius: var(--borderRadiusSmall);
+        background-color: var(--defaultwhite);
+        color: var(--blue);
+        font-size: var(--h3Size);
+        font-weight: bold;
+        padding: .2em 1em;
+    }
+
+    &:active .content {
+        color: var(--lgborange);
+    }
+}
+
 @keyframes turnWhite {
     to {
         background-color: var(--defaultwhite);
