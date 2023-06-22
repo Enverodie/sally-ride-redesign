@@ -66,14 +66,16 @@
 
 .GenericButton {
     --shadowBlur: 8px;
+    --shadowColor: var(--bluetransparent);
 
     background-image: var(--prideFlagImage);
     padding: .25em .25em;
     border-radius: var(--borderRadiusSmall);
     width: clamp(12ch, 22ch, 22ch);
     border: none;
-    // filter: drop-shadow(var(--dropShadowDirection) var(--shadowBlur) var(--bluetransparent));
-    filter: drop-shadow(0px 0px var(--shadowBlur) var(--bluetransparent));
+    filter: drop-shadow(0px 0px var(--shadowBlur) var(--shadowColor));
+    transition: filter 80ms ease-in-out;
+
     margin: 
         calc(var(--shadowBlur) + max(var(--dropShadowDirectionY), -1 * var(--dropShadowDirectionY))) 
         calc(var(--shadowBlur) + max(var(--dropShadowDirectionX), -1 * var(--dropShadowDirectionX)));
@@ -90,6 +92,10 @@
 
     &:active .content {
         color: var(--lgborange);
+    }
+
+    &:hover {
+        --shadowColor: var(--lgborange);
     }
 }
 
