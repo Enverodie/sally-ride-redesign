@@ -1,7 +1,8 @@
 import { useState } from "react";
 import ImageDetails from "./ImageDetails";
 
-import 'images.scss';
+import './images.scss';
+import GenericDropdown from "../buttons/GenericDropdown";
 
 /**
  * 
@@ -12,22 +13,16 @@ function MultipleImageSelector({images, children}) {
     const [ selectedImageIndex, setSelectedImageIndex ] = useState(0);
     let selectedImage = ImageDetails[images[selectedImageIndex]];
 
-    const options = images.map((imageID, arrayIndex) => {
-        return (
-            <option onClick={() => {setSelectedImageIndex(arrayIndex)}}>
-                {ImageDetails[imageID].details}
-            </option>
-        );
-    })
+    let imagesNames = images.map(imageID => {return ImageDetails[imageID].details});
 
     return (
         <div className="MultipleImageSelector">
             <div className="text">{children}</div>
             <div className="images">
-                <select>
-                    { options }
-                </select>
-                <img src={selectedImage.src} alt={selectedImage.alt} />
+                <GenericDropdown className="imageSelector" options={imagesNames} onOptionSelect={setSelectedImageIndex} />
+                <div className="imageScroller">
+                    <img src={selectedImage.src} alt={selectedImage.alt} />
+                </div>
             </div>
         </div>
     );

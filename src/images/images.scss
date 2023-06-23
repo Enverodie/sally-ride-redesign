@@ -297,5 +297,57 @@
 }
 
 .MultipleImageSelector {
-    
+    --totalHeight: 20rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--lightblue);
+    height: var(--totalHeight);
+    margin: 1.2em 0;
+    padding: 1em;
+    * { color: var(--pureblack); }
+    box-sizing: border-box;
+
+    .text {
+        &>:nth-child(1) {
+            margin-top: 0;
+        }
+    }
+
+    .images {
+        --imageSelectorOffset: .5em;
+
+        position: relative;
+        overflow: auto;
+        border: 2px solid var(--blue);
+        background-color: white;
+
+        .imageSelector {
+            display: block;
+            max-width: 100%;
+            width: 22ch;
+            right: var(--imageSelectorOffset);
+            top: var(--imageSelectorOffset);
+            position: sticky;
+            float: right;
+        }
+
+        .imageScroller {
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            // height: 100%;
+
+            img {
+                margin-top: var(--imageSelectorOffset);
+                width: 100%;
+            }
+        }
+
+    }
+}
+
+@media (min-width: 1500px) {
+    .MultipleImageSelector {
+        --totalHeight: 35rem;
+    }
 }
