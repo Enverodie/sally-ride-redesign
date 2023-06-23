@@ -30,7 +30,13 @@ function GenericDropdown({options, onOptionSelect}) {
             </button>
             <div className="options">
                 {options.map((o, i) => {
-                    return ( <button className="option" onClick={() => clickOption(i)}>{o}</button> )
+                    return ( 
+                        <button 
+                            className="option" 
+                            onClick={() => clickOption(i)}
+                            tabIndex={optionsMenuOpen? 0 : -1}
+                        >{o}</button> 
+                    )
                 })}
             </div>
         </div>
