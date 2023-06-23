@@ -32,7 +32,7 @@ function OurCampaign() {
                 if ('/' + accessibleRoute[1] === ROUTE) return (
                     <Route key={i} path={'/' + accessibleRoute[2]} element={
                         <>
-                            <h2>Overview: {r.TITLE_SHORT}</h2>
+                            <h2>{r.TITLE_SHORT}:</h2>
                             <r.default />
                         </>
                 } />

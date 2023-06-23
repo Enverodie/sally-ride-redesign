@@ -6,7 +6,8 @@ export const TITLE_SHORT = "Data Analysis";
 function DataAnalysis() {
     return ( 
 <>
-        <GenericButton src="https://www.google.com" target="_blank">Click me!</GenericButton>
+<h3>Overview:</h3>
+<p>Tate analyzed the data we received, and put them in excel charts. You can view some of these charts below.</p>
 </>
      );
 }

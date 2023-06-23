@@ -68,6 +68,7 @@
     --shadowBlur: 8px;
     --shadowColor: var(--bluetransparent);
 
+    display: block;
     background-image: var(--prideFlagImage);
     padding: .25em .25em;
     border-radius: var(--borderRadiusSmall);
@@ -85,9 +86,11 @@
         border-radius: var(--borderRadiusSmall);
         background-color: var(--defaultwhite);
         color: var(--blue);
-        font-size: var(--h3Size);
+        font-size: var(--h6Size);
         font-weight: bold;
         padding: .2em 1em;
+        height: 100%;
+        box-sizing: border-box;
     }
 
     &:active .content {
