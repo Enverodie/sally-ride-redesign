@@ -9,6 +9,27 @@ import Img3 from './index_images/sr3.jpg';
 import Img4 from './index_images/sr4.jpg';
 import Img5 from './index_images/sr5.jpg';
 
+import fc1 from './campaign_images/post_planning/fc1.png';
+import fc2 from './campaign_images/post_planning/fc2.png';
+import fs1 from './campaign_images/post_planning/fs1.png';
+import fs2 from './campaign_images/post_planning/fs2.png';
+import ft1 from './campaign_images/post_planning/ft1.png';
+import ft2 from './campaign_images/post_planning/ft2.png';
+
+import ic1 from './campaign_images/post_planning/it1.png';
+import ic2 from './campaign_images/post_planning/it2.png';
+import is1 from './campaign_images/post_planning/it1.png';
+import is2 from './campaign_images/post_planning/it2.png';
+import it1 from './campaign_images/post_planning/it1.png';
+import it2 from './campaign_images/post_planning/it2.png';
+
+import tc1 from './campaign_images/post_planning/tc1.png';
+import tc2 from './campaign_images/post_planning/tc2.png';
+import ts1 from './campaign_images/post_planning/ts1.png';
+import ts2 from './campaign_images/post_planning/ts2.png';
+import tt1 from './campaign_images/post_planning/tt1.png';
+import tt2 from './campaign_images/post_planning/tt2.png';
+
 /**
  * Object constructor that stores all image metadata
  * @param {*} src The image associated with a file
@@ -30,6 +51,24 @@ const ImageDetails = [
     ImageDetail(Img3, "Sally posing with crew in front of space shuttle image", "Sally & crew"),
     ImageDetail(Img4, "Sally behind a podium smiling", "Sally at a science festival"),
     ImageDetail(Img5, "Tam speaking into a microphone in front of a projector showing Sally smiling", "Tam O'Shaughnessy"),
+    ImageDetail(fc1, '', 'Cade Facebook 1'), // id: 5
+    ImageDetail(fc2, '', 'Cade Facebook 2'),
+    ImageDetail(fs1, '', 'Stephen Facebook 1'),
+    ImageDetail(fs2, '', 'Stephen Facebook 2'),
+    ImageDetail(ft1, '', 'Tate Facebook 1'),
+    ImageDetail(ft2, '', 'Tate Facebook 2'), // id: 10
+    ImageDetail(ic1, '', 'Cade Instagram 1'),
+    ImageDetail(ic2, '', 'Cade Instagram 2'),
+    ImageDetail(is1, '', 'Stephen Instagram 1'),
+    ImageDetail(is2, '', 'Stephen Instagram 2'),
+    ImageDetail(it1, '', 'Tate Instagram 1'), // id: 15
+    ImageDetail(it2, '', 'Tate Instagram 2'),
+    ImageDetail(tc1, '', 'Cade Twitter 1'),
+    ImageDetail(tc2, '', 'Cade Twitter 2'),
+    ImageDetail(ts1, '', 'Stephen Twitter 1'),
+    ImageDetail(ts2, '', 'Stephen Twitter 2'), // id: 20
+    ImageDetail(tt1, '', 'Tate Twitter 1'),
+    ImageDetail(tt2, '', 'Tate Twitter 2'),
 ]
 
 export default ImageDetails;
