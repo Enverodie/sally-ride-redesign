@@ -102,6 +102,69 @@
     }
 }
 
+.GenericDropdown {
+
+    --transitionStyle: 100ms ease-in-out;
+
+    display: block;
+    background-color: var(--lightblue);
+
+    button {
+        border: none;
+        background-color: inherit;
+        width: 100%;
+        text-align: right;
+        padding: .2em 1ch;
+        cursor: pointer;
+        
+        &:hover, &:focus {
+            background-color: var(--blue);
+            color: var(--defaultwhite);
+            font-weight: bold;
+        }
+    }
+
+    .selector {
+
+        &::before {
+            content: '▼';
+            transform: rotate(-90deg);
+            display: block;
+            transition: transform var(--transitionStyle);
+            text-align: left;
+            position: absolute;
+        }
+    }
+    
+    .options {            
+        --clip: inset(0% 0% 100% 0%);
+        position: absolute;
+        user-select: none;
+        right: 0;
+        width: 100%;
+        background-color: var(--lightblue);
+        
+        -webkit-clip-path: var(--clip);
+        clip-path: var(--clip);
+        transition: clip-path var(--transitionStyle);
+        
+        .option {
+            display: block;
+        }
+    }
+
+    &.active {
+        .selector::before {
+            transform: rotate(0deg);
+        }
+    
+        .options {
+            --clip: inset(0% 0% 0% 0%);
+            user-select: initial;
+        }
+    } 
+}
+
 @keyframes turnWhite {
     to {
         background-color: var(--defaultwhite);
