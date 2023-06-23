@@ -7,7 +7,7 @@ import './buttons.scss';
  * @param {String[]} options a list of options to fill the dropdown
  * @param {Function} onOptionSelect a function executed with the supplied index of the active option
  */
-function GenericDropdown({options, onOptionSelect}) {
+function GenericDropdown({className, options, onOptionSelect}) {
 
     const [ optionsMenuOpen, setOptionsMenuOpen ] = useState(false);
     const [ activeOptionIndex, setActiveOptionIndex ] = useState(0);
@@ -24,7 +24,7 @@ function GenericDropdown({options, onOptionSelect}) {
     }
 
     return ( 
-        <div className={"GenericDropdown" + (optionsMenuOpen? ' active' : '')}>
+        <div className={"GenericDropdown" + (className? ' ' + className : '') + (optionsMenuOpen? ' active' : '')}>
             <button className="selector" onClick={toggleOptionsMenu}>
                 {options[activeOptionIndex]}
             </button>

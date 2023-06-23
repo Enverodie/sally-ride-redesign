@@ -105,9 +105,13 @@
 .GenericDropdown {
 
     --transitionStyle: 100ms ease-in-out;
+    --borderThickness: 2px;
+    --borderStyle: var(--borderThickness) solid var(--blue);
 
     display: block;
     background-color: var(--lightblue);
+    border: var(--borderStyle);
+    box-sizing: border-box;
 
     button {
         border: none;
@@ -138,12 +142,15 @@
     
     .options {            
         --clip: inset(0% 0% 100% 0%);
+
         position: absolute;
         user-select: none;
-        right: 0;
-        width: 100%;
+        right: calc(-1 * var(--borderThickness));
+        width: calc(100% + 2 * var(--borderThickness));
         background-color: var(--lightblue);
-        
+        border: var(--borderStyle);
+        box-sizing: border-box;
+
         -webkit-clip-path: var(--clip);
         clip-path: var(--clip);
         transition: clip-path var(--transitionStyle);
