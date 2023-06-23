@@ -37,6 +37,7 @@ function OurCampaign() {
                         </>
                 } />
                 );
+                else return null;
             })
         }
         <Route path="/" element={<p>Click a section of the timeline above to get started.</p>} />
