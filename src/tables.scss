@@ -1,0 +1,46 @@
+table.AggregateTable {
+    --backgroundColor: var(--purewhite);
+    --dominantColor: var(--blue);
+    --altColor: var(--lightblue);
+
+    width: 100%;
+    // border-collapse: collapse;
+    * {color: var(--pureblack); }
+
+    tbody {
+        padding-top: 1em;
+    }
+    
+    td {
+        background-color: var(--backgroundColor);
+    }
+
+    tr {
+        border-bottom: 2px solid var(--altColor);
+        
+        &>:first-child {
+            font-weight: bold;
+            background-color: var(--dominantColor);
+            color: var(--defaultwhite);
+        }
+    } 
+
+    th {
+        text-align: left;
+        background-color: var(--altColor);
+    }
+
+    .twitter {
+        --dominantColor: var(--lorange);
+        --altColor: var(--lgborange);
+    }
+    
+    .instagram {
+        --dominantColor: var(--lpurple);
+        --altColor: var(--llightpink);
+    }
+    
+    .facebook {
+        --dominantColor: var(--lgbblue);
+    }
+}
