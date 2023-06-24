@@ -112,6 +112,7 @@
     background-color: var(--lightblue);
     border: var(--borderStyle);
     box-sizing: border-box;
+    * { color: var(--pureblack); }
 
     button {
         border: none;
@@ -145,8 +146,8 @@
 
         position: absolute;
         user-select: none;
-        right: calc(-1 * var(--borderThickness));
-        width: calc(100% + 2 * var(--borderThickness));
+        right: 0;
+        width: 100%;
         background-color: var(--lightblue);
         border: var(--borderStyle);
         box-sizing: border-box;

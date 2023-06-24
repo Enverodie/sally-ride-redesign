@@ -6,7 +6,7 @@ import GenericDropdown from "../buttons/GenericDropdown";
 
 /**
  * 
- * @param {number[]} images A list of IDs corresponding to the ImageDetails image
+ * @param {Number[]} images A list of IDs corresponding to the ImageDetails image
  */
 function MultipleImageSelector({images, children}) {
 

@@ -30,6 +30,10 @@ import ts2 from './campaign_images/post_planning/ts2.png';
 import tt1 from './campaign_images/post_planning/tt1.png';
 import tt2 from './campaign_images/post_planning/tt2.png';
 
+import irf from './campaign_images/revision_3/facebook_prototype_3.png';
+import iri from './campaign_images/revision_3/instagram_prototype3.png';
+import irt from './campaign_images/revision_3/twitter_prototype3.png';
+
 /**
  * Object constructor that stores all image metadata
  * @param {*} src The image associated with a file
@@ -69,6 +73,9 @@ const ImageDetails = [
     ImageDetail(ts2, '', 'Stephen Twitter 2'), // id: 20
     ImageDetail(tt1, '', 'Tate Twitter 1'),
     ImageDetail(tt2, '', 'Tate Twitter 2'),
+    ImageDetail(irf, '', 'Image revision Facebook'),
+    ImageDetail(iri, '', 'Image revision Instagram'),
+    ImageDetail(irt, '', 'Image revision Twitter'),
 ]
 
 export default ImageDetails;

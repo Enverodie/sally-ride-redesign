@@ -306,6 +306,7 @@
     padding: 1em;
     * { color: var(--pureblack); }
     box-sizing: border-box;
+    overflow: auto;
 
     .text {
         &>:nth-child(1) {
@@ -318,6 +319,7 @@
 
         position: relative;
         overflow: auto;
+        min-height: 40%;
         border: 2px solid var(--blue);
         background-color: white;
 
@@ -329,6 +331,11 @@
             top: var(--imageSelectorOffset);
             position: sticky;
             float: right;
+
+            .options {
+                right: calc(-1 * var(--borderThickness));
+                width: calc(100% + 2 * var(--borderThickness));
+            }
         }
 
         .imageScroller {
