@@ -16,9 +16,9 @@ import fs2 from './campaign_images/post_planning/fs2.png';
 import ft1 from './campaign_images/post_planning/ft1.png';
 import ft2 from './campaign_images/post_planning/ft2.png';
 
-import ic1 from './campaign_images/post_planning/it1.png';
+import ic1 from './campaign_images/post_planning/ic1.png';
 import ic2 from './campaign_images/post_planning/it2.png';
-import is1 from './campaign_images/post_planning/it1.png';
+import is1 from './campaign_images/post_planning/is1.png';
 import is2 from './campaign_images/post_planning/it2.png';
 import it1 from './campaign_images/post_planning/it1.png';
 import it2 from './campaign_images/post_planning/it2.png';
@@ -33,6 +33,11 @@ import tt2 from './campaign_images/post_planning/tt2.png';
 import irf from './campaign_images/revision_3/facebook_prototype_3.png';
 import iri from './campaign_images/revision_3/instagram_prototype3.png';
 import irt from './campaign_images/revision_3/twitter_prototype3.png';
+
+import demographicsage from './campaign_images/data_analysis/age.jpg';
+import demographicsgender from './campaign_images/data_analysis/gender.jpg';
+import demographicsminority from './campaign_images/data_analysis/minstat.jpg';
+import demographicsrace from './campaign_images/data_analysis/race.jpg';
 
 /**
  * Object constructor that stores all image metadata
@@ -73,9 +78,13 @@ const ImageDetails = [
     ImageDetail(ts2, '', 'Stephen Twitter 2'), // id: 20
     ImageDetail(tt1, '', 'Tate Twitter 1'),
     ImageDetail(tt2, '', 'Tate Twitter 2'),
-    ImageDetail(irf, '', 'Image revision Facebook'),
-    ImageDetail(iri, '', 'Image revision Instagram'),
-    ImageDetail(irt, '', 'Image revision Twitter'),
+    ImageDetail(irf, '', 'Facebook revision'),
+    ImageDetail(iri, '', 'Instagram revision'),
+    ImageDetail(irt, '', 'Twitter revision'), // id: 25
+    ImageDetail(demographicsage, '', 'Age'),
+    ImageDetail(demographicsgender, '', 'Gender'),
+    ImageDetail(demographicsminority, '', 'Minority Status'),
+    ImageDetail(demographicsrace, '', 'Race'),
 ]
 
 export default ImageDetails;
