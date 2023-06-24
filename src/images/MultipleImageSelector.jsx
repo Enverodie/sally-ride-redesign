@@ -19,7 +19,9 @@ function MultipleImageSelector({images, children}) {
         <div className="MultipleImageSelector">
             <div className="text">{children}</div>
             <div className="images">
+                {images.length > 1 && (
                 <GenericDropdown className="imageSelector" options={imagesNames} onOptionSelect={setSelectedImageIndex} />
+                )}
                 <div className="imageScroller">
                     <img src={selectedImage.src} alt={selectedImage.alt} />
                 </div>
