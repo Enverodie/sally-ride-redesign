@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ImagePoolContext } from "../contexts/ImagePoolContext";
 import ImageSeed from "../images/ImageSeed";
+import { Helmet } from "react-helmet";
 
 export const ROUTE = '/';
 export const TITLE_SHORT = "Home";
@@ -14,6 +15,9 @@ function Index() {
 
     return ( 
         <>
+<Helmet>
+    <title>Sally Ride Project - Home</title>
+</Helmet>
 <h2>The First American Woman in Space</h2>
 <p>Sally Ride was the first American woman in space. As expected by the title, she had to overcome numerous challenges throughout her time in the space program and especially finding her way into the field.</p>
 

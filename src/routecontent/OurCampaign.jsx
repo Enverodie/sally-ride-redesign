@@ -11,6 +11,7 @@ import * as Prototype3Data from "./OurCampaignSubpages/Prototype3";
 import * as RedesignData from "./OurCampaignSubpages/Redesign";
 import * as SurveyData from "./OurCampaignSubpages/Survey";
 import RouteNotFound from "../RouteNotFound";
+import { Helmet } from "react-helmet";
 
 export const ROUTE = '/OurCampaign';
 export const TITLE_SHORT = "Our Campaign";
@@ -21,6 +22,9 @@ const ACCESSIBLE_ROUTES = [DataAnalysisData, PostPlanningData, PresentationData,
 function OurCampaign() {
     return ( 
 <>
+    <Helmet>
+        <title>Sally Ride Project - Campaign</title>
+    </Helmet>
     <h2>Process overview</h2>
     <p>This section is dedicated to the documentation of our progress in the campaign, divided into sections consisting of distributables of our work.</p>
     <CampaignNav />

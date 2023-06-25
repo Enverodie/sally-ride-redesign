@@ -2,14 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" type="image/svg+xml" />
+    <!-- TODO: implement a new fallback for browsers where svg icons don't work -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Home of the #SallyRidePride social media campaign"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="author" content="Stephen Smith">
+    <meta name="keywords" content="Sally Ride, Social Media, Outreach, Campaign, Pride, Indiana University" />
+    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
+    <!-- TODO: implement a new apple touch icon -->
+    <meta property="og:title" content="Sally Ride: An Innovator In Stem" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="%PUBLIC_URL%/OpenGraph-image.png" />
+    <meta property="og:description" content="Home of the revised #SallyRidePride social media campaign." />
+    <!-- <meta property="og:url" content="" /> -->
+    <!-- This will be added in App.js - I don't know the domain a priori -->
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -24,7 +35,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Sally Ride Project</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

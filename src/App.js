@@ -32,10 +32,11 @@ function App() {
   return (
     <>
       <Helmet>
-        <title></title>
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
       </Helmet>
       <div className="App">
 
@@ -69,7 +70,9 @@ function MainBlockContents() {
 
   return (
     <>
-
+      <Helmet>
+        <meta name="og:url" content={window.location.href} />
+      </Helmet>
       <header>
         <Title>
           {ACCESSIBLE_ROUTES.find(item => item.ROUTE.split('/')[1] === location.pathname.split('/')[1])?.TITLE || "Sally Ride Awareness Campaign website"}

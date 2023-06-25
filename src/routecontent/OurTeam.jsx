@@ -2,6 +2,7 @@ import TeamMemberCard from "../cards/TeamMemberCard";
 import StephenImage from "../images/team_images/stephen.jpg";
 import StephenNewImage from "../images/team_images/stephen-new.jpg";
 import '../cards/cardHolders.scss';
+import { Helmet } from "react-helmet";
 
 export const ROUTE = '/OurTeam';
 export const TITLE_SHORT = "Our Team";
@@ -11,6 +12,9 @@ function OurTeam() {
     return ( 
         <>
 
+<Helmet>
+    <title>Sally Ride Project - Team</title>
+</Helmet>
 <h2>About us:</h2>
 <p>We are team 093 in I101 section 5555. We are designing a social media campaign to raise awareness around Sally Ride and her inspirational story of overcoming discrimination and adversity to become the first American woman in space.</p>
 <h3>Website redesign:</h3>
