@@ -102,9 +102,9 @@ function MainBlockContents() {
           </Routes>
         </main>
         <aside>
-          <ShowAtBreakpoint min="Desktop">
+          {/* <ShowAtBreakpoint min="Desktop">
             <MissionSealImage height="50%" />
-          </ShowAtBreakpoint>
+          </ShowAtBreakpoint> */}
           <ImagePlaceholderController poolNumber={0} height="75%" rotation="-7deg" />
           <ImagePlaceholderController poolNumber={1} altBorder={true} height="100%" rotation="5deg" />
         </aside>
