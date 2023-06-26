@@ -1,6 +1,7 @@
 @use 'breakpoints';
 
 :root {
+  --backgroundColor: #13001a;
   --bodyBackgroundImage: url('images/starfield2.png');
   --prideFlagImage: linear-gradient(180deg, #FE0000 16.66%,
   #FD8C00 16.66%, 33.32%,
@@ -111,6 +112,7 @@ body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background-color: var(--backgroundColor);
 }
 
 body {
