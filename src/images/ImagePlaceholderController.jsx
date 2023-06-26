@@ -8,12 +8,31 @@ import { ImagePoolContext } from "../contexts/ImagePoolContext";
 import { ImagePlaceholderContext } from "../contexts/ImagePlaceholderContext";
 import ImageDetails, { ImageDetail } from "./ImageDetails";
 
+/**
+ * 
+ * @param {String} width a css width value
+ * @param {String} height a css height value
+ * @param {String} rotation a css rotation value to rotate the element
+ * @param {String} altBorder a css image to change the background to
+ * @param {Number|Number[]} poolNumber a number or list of numbers corresponding to the pool(s) to draw images from
+ * @returns {JSXElementConstructor}
+ */
 function ImagePlaceholderController({ width, height, rotation, altBorder, poolNumber }) {
     
     poolNumber = (typeof poolNumber !== 'undefined') ? poolNumber : 0;
 
     const imagePool = useContext(ImagePoolContext);
-    const imagesInPool = imagePool.getImagesInPool(poolNumber);
+    
+    let imagesInPool = [];
+    if (Array.isArray(poolNumber)) {
+        poolNumber.forEach(pool => { 
+            let imagesInThisPool = imagePool.getImagesInPool(pool);
+            if (imagesInThisPool === -1) return;
+            imagesInPool = imagesInPool.concat(imagesInThisPool);
+        });
+        if (imagesInPool.length === 0) imagesInPool = -1;
+    } 
+    else imagesInPool = imagePool.getImagesInPool(poolNumber);
 
     const reducer = (state, action) => {
         switch (action.type) {

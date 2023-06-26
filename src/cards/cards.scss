@@ -1,4 +1,4 @@
-@use '../breakpoints';
+@use '../widthBreakpoints';
 
 .card {
     display: flex;
@@ -85,8 +85,8 @@
 
 // designed to prevent scroll behavior on normal display zooms
 @media 
-    ((min-width: breakpoints.$minDesktop) and (max-width: 1300px)) or 
-    ((min-width: breakpoints.$minTablet) and (max-width: 750px)) {
+    ((min-width: widthBreakpoints.$minDesktop) and (max-width: 1300px)) or 
+    ((min-width: widthBreakpoints.$minTablet) and (max-width: 750px)) {
     .TeamMemberCard {
         height: calc(var(--defaultHeight) + 6em);
     }

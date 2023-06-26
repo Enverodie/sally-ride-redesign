@@ -1,4 +1,5 @@
-@use '../breakpoints';
+@use '../widthBreakpoints';
+@use '../heightBreakpoints';
 
 nav.mainNav {
     --defaultWidth: 20vw;
@@ -226,7 +227,7 @@ nav.campaignNav {
 }
 
 // tablets and ipads and old pc monitors
-@media (min-width: breakpoints.$minTablet) {
+@media (min-width: widthBreakpoints.$minTablet) {
     nav.mainNav {
         --paddingVertical: var(--borderRadiusLarge);
         --borderRadiusPadding: 2ch;
@@ -270,7 +271,7 @@ nav.campaignNav {
 }
 
 // desktops
-@media (min-width: breakpoints.$minDesktop) {
+@media (min-width: widthBreakpoints.$minDesktop) {
     nav.mainNav {
         --paddingVertical: calc(var(--borderRadiusSmall) / 2);
 
@@ -322,5 +323,5 @@ nav.campaignNav {
         .navTitles .auxHeader {
             font-size: var(--h5Size);
         }
-    }
+    } 
 }

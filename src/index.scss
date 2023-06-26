@@ -1,4 +1,4 @@
-@use 'breakpoints';
+@use 'widthBreakpoints';
 
 :root {
   --backgroundColor: #13001a;
@@ -58,7 +58,7 @@
   --imageDropShadow: var(--dropShadowDirection) 0px var(--pureblacktransparent);
 }
 
-@media (min-width: breakpoints.$minTablet) {
+@media (min-width: widthBreakpoints.$minTablet) {
   :root {
     --h1Size: 48px;
     --h2Size: 27px;
@@ -70,7 +70,7 @@
   }
 }
 
-@media (min-width: breakpoints.$minDesktop) {
+@media (min-width: widthBreakpoints.$minDesktop) {
   :root {
     --h1Size: 48px;
     --h2Size: 40px;

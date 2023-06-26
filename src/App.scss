@@ -1,4 +1,4 @@
-@use '_breakpoints';
+@use '_widthBreakpoints';
 
 .App {
     width: 100vw;
@@ -97,7 +97,7 @@
     }
 }
 
-@media (min-width: breakpoints.$minTablet) {
+@media (min-width: widthBreakpoints.$minTablet) {
 
     .mainBlock {
 
@@ -123,7 +123,7 @@
 
 }
 
-@media (min-width: breakpoints.$minDesktop) {
+@media (min-width: widthBreakpoints.$minDesktop) {
     
     .mainBlock {
         --asideWidth: 24%;
