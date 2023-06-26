@@ -94,6 +94,7 @@ nav.mainNav {
         gap: var(--paddingVertical);
         padding-top: var(--buttonDefaultPadding);
         padding-bottom: var(--buttonDefaultPadding);
+        overflow: hidden;
     }
 }
 
@@ -232,7 +233,7 @@ nav.campaignNav {
         --paddingVertical: var(--borderRadiusLarge);
         --borderRadiusPadding: 2ch;
         flex-direction: row;
-        padding: 0 var(--borderRadiusPadding);
+        padding: 0 0 0 var(--borderRadiusLarge);
         border-radius: 0 0 var(--borderRadiusLarge) var(--borderRadiusLarge);
 
         .navTitles {
@@ -265,7 +266,15 @@ nav.campaignNav {
         }
 
         .navButtons {
-            padding: var(--paddingVertical) 0 var(--paddingVertical) var(--borderRadiusPadding);
+            padding: 
+                calc(var(--paddingVertical) / 2) 
+                var(--paddingVertical) 
+                calc(var(--paddingVertical) / 2) 
+                var(--paddingVertical);
+            &>:last-child {
+                border-radius: 0 0 var(--borderRadiusLarge);
+                overflow: hidden;
+            }
         }
     }
 }
@@ -312,6 +321,10 @@ nav.campaignNav {
                 flex: 1;
                 flex-direction: row;
             }
+
+            &>:last-child {
+                border-radius: 0 0 0 var(--borderRadiusLarge);
+            }
         }
     }
 }
@@ -322,6 +335,21 @@ nav.campaignNav {
 
         .navTitles .auxHeader {
             font-size: var(--h5Size);
+        }
+
+        .navButtons>:last-child {
+            border-radius: 0;
+        }
+    }
+}
+
+@media (max-height: heightBreakpoints.$maxSmall) {
+    nav.mainNav {
+        --paddingVertical: calc(var(--borderRadiusSmall) / 2);
+        --borderRadiusPadding: 1ch;
+
+        .navTitles .mainHeader {
+            font-size: var(--h4Size);
         }
     } 
 }
