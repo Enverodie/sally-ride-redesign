@@ -29,12 +29,6 @@ const ALLOWED_SUBROUTES = [TheProjectData];
  */
 function App() {
 
-  const [ height, setHeight ] = useState(window.innerHeight);
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {console.log("resized"); setHeight(window.innerHeight)});
-  }, [])
-
   return (
     <>
       <Helmet>
@@ -44,7 +38,7 @@ function App() {
         <link href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
       </Helmet>
-      <div className="App" style={{height: `${height}px`}}>
+      <div className="App">
 
         <div className='totalBlock'>
 
